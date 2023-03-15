@@ -15,7 +15,12 @@ module.exports = {
         {
           '5/95': '5% 95%',
           'fixed': '40px 260px',
-        }
+          '60/40/60': '60% 40% 60%',
+          '40/60/40': '40% 60% 40%',
+        },
+      fontFamily: {
+        'roboto': ['Roboto', 'sans-serif'],
+      }
     },
   },
   plugins: [

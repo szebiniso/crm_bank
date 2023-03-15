@@ -5,9 +5,9 @@ export const RegisterApi = createAsyncThunk(
   "register/registerUser",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await API.post("register/", data.data);
+      const response = await API.post("register/", data.values);
       console.log(response.data);
-      data.navigate("/");
+      data.slideLogin()
       return response.data;
     } catch (e) {
       return rejectWithValue(e.response.data.message);

@@ -1,17 +1,6 @@
 import React, { FC } from "react";
 
-interface InputFill {
-  label: string;
-  placeholder: string;
-  type: string;
-  autoComplete?: string;
-  name?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  children?: React.ReactNode;
-  error?: string | undefined;
-  touched?: boolean | "" | undefined;
-}
-const Input: FC<InputFill> = ({
+const Input = ({
   label,
   placeholder,
   type,
@@ -21,7 +10,7 @@ const Input: FC<InputFill> = ({
   onChange,
   name,
   children,
-}: InputFill) => {
+}) => {
   return (
     <div className="h-[5rem] mb-3 md:mb-1">
       <label

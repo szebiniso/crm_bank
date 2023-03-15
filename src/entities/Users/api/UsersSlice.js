@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {getUserById, getUsers} from "./UsersSliceFunctions";
+import {RegisterApi} from "../../Forms/api/registerApi";
 
 
 const initialState = {

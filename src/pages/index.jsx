@@ -10,6 +10,7 @@ import Registration from "./Registration";
 import Auth from "./Auth";
 import MainRouting from "./mainPage";
 import UsersRouting from "./usersPage";
+import LoginDrawer from "../LoginRegister/LoginDrawer";
 
 // const TestPage = lazy(() => import("./test"));
 
@@ -18,7 +19,8 @@ export const Routing = () => {
     <Routes>
       <Route path="/projects" element={<MainRouting />} />
       <Route path="/users" element={<UsersRouting />} />
-      <Route path="/" element={<Auth />} />
+      {/*<Route path="/" element={<Auth />} />*/}
+      <Route path="/" element={<LoginDrawer />} />
       <Route path="/registration" element={<Registration />} />
       {/*<Navigate to="/" />*/}
     </Routes>
