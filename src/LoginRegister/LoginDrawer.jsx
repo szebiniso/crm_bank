@@ -11,11 +11,11 @@ function LoginDrawer() {
 
   const slideLeft = (id) => {
     const slider = document.getElementById(id);
-    slider.scrollLeft = slider.scrollLeft - 1500;
+    slider.scrollLeft = slider.scrollLeft - 1400;
   };
   const slideRight = (id) => {
     const slider = document.getElementById(id);
-    slider.scrollLeft = slider.scrollLeft + 1500;
+    slider.scrollLeft = slider.scrollLeft + 1400;
   };
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function LoginDrawer() {
       <div className=' h-screen w-screen'>
         <div
           id='slider'
-          className='w-screen h-screen overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide grid grid-cols-40/60/40'
+          className='w-screen h-screen overflow-hidden whitespace-nowrap scroll-smooth scrollbar-hide grid grid-cols-40/60/40'
         >
           <div className='bg-[#3b3d4c] inline-block cursor-pointer ease-in-out duration-300 flex items-center justify-center'>
             <RegistrationForm slideLogin={() => handleSlideLogin('slider', 'cover_slider')}/>
@@ -53,7 +53,7 @@ function LoginDrawer() {
 
         <div
           id='cover_slider'
-          className='absolute top-0 left-0 w-screen h-screen overflow-x-scroll scroll whitespace-nowrap scroll-smooth duration-75 scrollbar-hide grid grid-cols-60/40/60'
+          className='absolute top-0 left-0 w-screen h-screen overflow-hidden whitespace-nowrap scroll-smooth duration-75 scrollbar-hide grid grid-cols-60/40/60'
         >
           <div className='bg-transparent text-center flex flex-col items-center justify-end'>
             {/*<img className='w-[150px] mb-6 2xl:hidden' src='https://totalcrm.com.au/wp-content/uploads/2021/06/Total-CRM-LOGO-Dark-BG.png'/>*/}
