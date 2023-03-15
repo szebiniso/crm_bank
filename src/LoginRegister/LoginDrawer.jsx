@@ -8,18 +8,20 @@ import RegistrationForm from "../entities/Forms/ui/RegistrationForm";
 function LoginDrawer() {
 
   const [slided, setSlided] = useState(true);
+  const [smooth, setSmooth] = useState(false);
 
   const slideLeft = (id) => {
     const slider = document.getElementById(id);
-    slider.scrollLeft = slider.scrollLeft - 1400;
+    slider.scrollLeft = slider.scrollLeft - 2000;
   };
   const slideRight = (id) => {
     const slider = document.getElementById(id);
-    slider.scrollLeft = slider.scrollLeft + 1400;
+    slider.scrollLeft = slider.scrollLeft + 2000;
   };
 
   useEffect(() => {
     slideRight('slider')
+    setSmooth(true)
   }, []);
 
   const handleSlideLogin = (id, cover_id) => {
@@ -38,8 +40,9 @@ function LoginDrawer() {
     <>
       <div className=' h-screen w-screen'>
         <div
+          style={{scrollBehavior: smooth ? 'smooth' : ''}}
           id='slider'
-          className='w-screen h-screen overflow-hidden whitespace-nowrap scroll-smooth scrollbar-hide grid grid-cols-40/60/40'
+          className='w-screen h-screen overflow-hidden whitespace-nowrap scrollbar-hide grid grid-cols-40/60/40'
         >
           <div className='bg-[#3b3d4c] inline-block cursor-pointer ease-in-out duration-300 flex items-center justify-center'>
             <RegistrationForm slideLogin={() => handleSlideLogin('slider', 'cover_slider')}/>
@@ -52,12 +55,13 @@ function LoginDrawer() {
         </div>
 
         <div
+          style={{scrollBehavior: smooth ? 'smooth' : ''}}
           id='cover_slider'
-          className='absolute top-0 left-0 w-screen h-screen overflow-hidden whitespace-nowrap scroll-smooth duration-75 scrollbar-hide grid grid-cols-60/40/60'
+          className='absolute top-0 left-0 w-screen h-screen overflow-hidden whitespace-nowrap  duration-75 scrollbar-hide grid grid-cols-60/40/60'
         >
           <div className='bg-transparent text-center flex flex-col items-center justify-end'>
             {/*<img className='w-[150px] mb-6 2xl:hidden' src='https://totalcrm.com.au/wp-content/uploads/2021/06/Total-CRM-LOGO-Dark-BG.png'/>*/}
-            <h2 className="font-roboto text-3xl font-extrabold text-white mb-12 lg:mb-8">
+            <h2 className="font-roboto text-3xl font-extrabold text-white mb-12 lg:mb-8 lg:text-[1.6rem] md:[1.6rem] xl:[1.6rem]">
               Привет! Добро пожаловать на платформу <br/> Project Pilot
             </h2>
             {/*<p className="mb-3 text-lg font-normal text-gray-400 md:text-xl">*/}
@@ -76,7 +80,7 @@ function LoginDrawer() {
           </div>
           <div className='bg-transparent text-center flex flex-col items-center justify-end'>
             {/*<img className='w-[150px] mb-6 2xl:hidden' src='https://totalcrm.com.au/wp-content/uploads/2021/06/Total-CRM-LOGO-Dark-BG.png'/>*/}
-            <h2 className="font-roboto text-3xl font-extrabold text-white mb-12 lg:mb-8">
+            <h2 className="font-roboto text-3xl font-extrabold text-white mb-12 lg:mb-8 lg:text-[1.6rem] md:[1.6rem] xl:[1.6rem]">
               Привет! Добро пожаловать на платформу <br/> Project Pilot
             </h2>
             {/*<p className="mb-3 text-lg font-normal text-gray-400 md:text-xl">*/}
