@@ -56,7 +56,7 @@ function LoginDrawer() {
           className='absolute top-0 left-0 w-screen h-screen overflow-x-scroll scroll whitespace-nowrap scroll-smooth duration-75 scrollbar-hide grid grid-cols-60/40/60'
         >
           <div className='bg-transparent text-center flex flex-col items-center justify-end'>
-            <img className='w-[150px] mb-6 2xl:hidden' src='https://totalcrm.com.au/wp-content/uploads/2021/06/Total-CRM-LOGO-Dark-BG.png'/>
+            {/*<img className='w-[150px] mb-6 2xl:hidden' src='https://totalcrm.com.au/wp-content/uploads/2021/06/Total-CRM-LOGO-Dark-BG.png'/>*/}
             <h2 className="font-roboto text-3xl font-extrabold text-white mb-12 lg:mb-8">
               Привет! Добро пожаловать на платформу <br/> Project Pilot
             </h2>
