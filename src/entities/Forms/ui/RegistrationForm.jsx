@@ -38,7 +38,7 @@ const RegistrationForm = ({slideLogin}) => {
 
   return (
     <div className='w-[70%] flex flex-col gap-10 justify-center'>
-      <h3 className='font-roboto m-auto text-3xl font-bold text-gray-200 md:text-xl lg:text-2xl xl:text-3xl 2xl:text-3xl'>Зарегистрироваться</h3>
+      <h3 className='font-roboto m-auto text-3xl font-bold text-gray-200 md:text-xl lg:text-[1.6rem] xl:text-[1.6rem] 2xl:text-3xl'>Зарегистрироваться</h3>
       <form onSubmit={formik.handleSubmit} className='flex flex-col gap-7 z-10'>
         <InputNew
           error={formik.errors.first_name}

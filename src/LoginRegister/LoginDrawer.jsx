@@ -71,11 +71,11 @@ function LoginDrawer() {
             <img className='w-[60%]' src='https://www.theconstructsim.com/wp-content/uploads/2020/05/Individuals-TCS-2020-1.png'/>
           </div>
           <div className="h-screen bg-transparent inline-block">
-            <h3 className="font-roboto mb-4 p-8 text-xl font-extrabold text-gray-300 dark:text-white md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-4xl" >
-              <span className="text-blue-500 mb-8">P</span>.Pilot</h3>
+            {/*<h3 className="font-roboto mb-4 p-8 text-xl font-extrabold text-gray-300 dark:text-white md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-4xl" >*/}
+            {/*  <span className="text-blue-500 mb-8">P</span>.Pilot</h3>*/}
           </div>
           <div className='bg-transparent text-center flex flex-col items-center justify-end'>
-            <img className='w-[150px] mb-6 2xl:hidden' src='https://totalcrm.com.au/wp-content/uploads/2021/06/Total-CRM-LOGO-Dark-BG.png'/>
+            {/*<img className='w-[150px] mb-6 2xl:hidden' src='https://totalcrm.com.au/wp-content/uploads/2021/06/Total-CRM-LOGO-Dark-BG.png'/>*/}
             <h2 className="font-roboto text-3xl font-extrabold text-white mb-12 lg:mb-8">
               Привет! Добро пожаловать на платформу <br/> Project Pilot
             </h2>
