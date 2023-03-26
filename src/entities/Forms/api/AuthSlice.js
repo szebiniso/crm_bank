@@ -6,17 +6,21 @@ import {AuthApi} from "./authApi";
 const initialState = {
   registerLoading: false,
   registerSuccess: false,
-  registerError:{},
+  registerError: false,
 
   authLoading: false,
   authSuccess: false,
-  authError:{}
+  authError: false
 };
 
 const authsSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    closeAuthErrorAlert: state => {
+      state.authError = false
+    }
+  },
   extraReducers: {
     [RegisterApi.pending]: (state) => {
       state.registerLoading = true;
@@ -28,7 +32,7 @@ const authsSlice = createSlice({
     [RegisterApi.rejected]: (state, action) => {
       state.registerLoading = false
       state.registerSuccess = false
-      state.registerError = action.payload
+      state.registerError = true
     },
     [AuthApi.pending]: (state) => {
       state.authLoading = true;
@@ -40,10 +44,13 @@ const authsSlice = createSlice({
     [AuthApi.rejected]: (state, action) => {
       state.authLoading = false
       state.authSuccess = false
-      state.authError = action.payload
+      state.authError = true
     },
   },
 })
+
+
+export const { closeAuthErrorAlert } = authsSlice.actions;
 
 export const authSlice = authsSlice.reducer;
 

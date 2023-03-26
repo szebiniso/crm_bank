@@ -1,103 +1,51 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {AtSymbolIcon, KeyIcon, PhoneIcon, UserCircleIcon} from "@heroicons/react/24/outline";
-import Input from "../shared/ui/Input";
-import InputNew from "../shared/ui/InputNew";
+import React from 'react';
 import AuthForm from "../entities/Forms/ui/AuthForm";
-import RegistrationForm from "../entities/Forms/ui/RegistrationForm";
+import {useDispatch, useSelector} from "react-redux";
+import {closeAuthErrorAlert} from "../entities/Forms/api/AuthSlice";
 
 function LoginDrawer() {
 
-  const [slided, setSlided] = useState(true);
-  const [smooth, setSmooth] = useState(false);
-
-  const slideLeft = (id) => {
-    const slider = document.getElementById(id);
-    slider.scrollLeft = slider.scrollLeft - 2000;
-  };
-  const slideRight = (id) => {
-    const slider = document.getElementById(id);
-    slider.scrollLeft = slider.scrollLeft + 2000;
-  };
-
-  useEffect(() => {
-    slideRight('slider')
-    setSmooth(true)
-  }, []);
-
-  const handleSlideLogin = (id, cover_id) => {
-    slideRight(id)
-    slideLeft(cover_id)
-    setSlided(!slided)
-  }
-
-  const handleSlideRegistration = (id, cover_id) => {
-    slideRight(cover_id)
-    slideLeft(id)
-    setSlided(!slided)
-  }
+  const {authError} = useSelector(state => state.auth)
+  const dispatch = useDispatch();
 
   return (
-    <>
-      <div className=' h-screen w-screen'>
-        <div
-          style={{scrollBehavior: smooth ? 'smooth' : ''}}
-          id='slider'
-          className='w-screen h-screen overflow-hidden whitespace-nowrap scrollbar-hide grid grid-cols-40/60/40'
-        >
-          <div className='bg-[#3b3d4c] inline-block cursor-pointer ease-in-out duration-300 flex items-center justify-center'>
-            <RegistrationForm slideLogin={() => handleSlideLogin('slider', 'cover_slider')}/>
+    <div className='relative'>
+      {
+        authError && <div id="alert-2" className="flex p-4 mb-4 text-red-800 absolute right-10 top-10 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                          role="alert">
+          <svg aria-hidden="true" className="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+               xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clip-rule="evenodd"></path>
+          </svg>
+          <span className="sr-only">Info</span>
+          <div className="mx-3 text-sm font-medium">
+            Неправильно введен логин или пароль! :(
           </div>
-          <div className="bg-blue-900 cursor-pointer ease-in-out duration-100 text-center">
-          </div>
-          <div className='h-screen bg-[#3b3d4c] inline-block cursor-pointer ease-in-out duration-300 flex items-center justify-center'>
-            <AuthForm/>
-          </div>
+          <button type="button"
+                  onClick={() => dispatch(closeAuthErrorAlert())}
+                  className="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"
+                  data-dismiss-target="#alert-2" aria-label="Close">
+            <span className="sr-only">Close</span>
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+            </svg>
+          </button>
         </div>
+      }
 
-        <div
-          style={{scrollBehavior: smooth ? 'smooth' : ''}}
-          id='cover_slider'
-          className='absolute top-0 left-0 w-screen h-screen overflow-hidden whitespace-nowrap  duration-75 scrollbar-hide grid grid-cols-60/40/60'
-        >
-          <div className='bg-transparent text-center flex flex-col items-center justify-end'>
-            {/*<img className='w-[150px] mb-6 2xl:hidden' src='https://totalcrm.com.au/wp-content/uploads/2021/06/Total-CRM-LOGO-Dark-BG.png'/>*/}
-            <h2 className="font-roboto text-3xl font-extrabold text-white mb-12 lg:mb-8 lg:text-[1.6rem] md:[1.6rem] xl:[1.6rem]">
-              Привет! Добро пожаловать на платформу <br/> Project Pilot
-            </h2>
-            {/*<p className="mb-3 text-lg font-normal text-gray-400 md:text-xl">*/}
-            {/*    Еще нет аккаунта?*/}
-            {/*  </p>*/}
-            <button type="button"
-                    onClick={() => handleSlideRegistration('slider', 'cover_slider')}
-                    className="font-roboto text-white cursor-pointer mt-4 bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 font-medium rounded-lg text-sm px-6 py-3 text-center mb-4  md:mb-6 lg:mb-4 xl:mb-4 2xl:mb-1">
-              Зарегистрироваться
-            </button>
-            <img className='w-[60%]' src='https://www.theconstructsim.com/wp-content/uploads/2020/05/Individuals-TCS-2020-1.png'/>
-          </div>
-          <div className="h-screen bg-transparent inline-block">
-            {/*<h3 className="font-roboto mb-4 p-8 text-xl font-extrabold text-gray-300 dark:text-white md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-4xl" >*/}
-            {/*  <span className="text-blue-500 mb-8">P</span>.Pilot</h3>*/}
-          </div>
-          <div className='bg-transparent text-center flex flex-col items-center justify-end'>
-            {/*<img className='w-[150px] mb-6 2xl:hidden' src='https://totalcrm.com.au/wp-content/uploads/2021/06/Total-CRM-LOGO-Dark-BG.png'/>*/}
-            <h2 className="font-roboto text-3xl font-extrabold text-white mb-12 lg:mb-8 lg:text-[1.6rem] md:[1.6rem] xl:[1.6rem]">
-              Привет! Добро пожаловать на платформу <br/> Project Pilot
-            </h2>
-            {/*<p className="mb-3 text-lg font-normal text-gray-400 md:text-xl">*/}
-            {/*  Уже есть аккаунт?*/}
-            {/*</p>*/}
-            <button type="button"
-                    onClick={() => handleSlideLogin('slider', 'cover_slider')}
-                    className="font-roboto text-white cursor-pointer mt-4 bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 font-medium rounded-lg text-sm px-6 py-3 text-center mb-2">
-              Авторизоваться
-            </button>
-            <img className='w-[60%]' src='https://www.theconstructsim.com/wp-content/uploads/2020/05/Individuals-TCS-2020-1.png'/>
-          </div>
+      <div className='h-screen w-screen overflow-hidden whitespace-nowrap scrollbar-hide grid grid-cols-60/40'>
+        <div className='bg-[#3b3d4c] text-center flex items-center justify-center'>
+          <img className='w-[95%] h-screen mt-6' src='https://www.theconstructsim.com/wp-content/uploads/2020/05/Individuals-TCS-2020-1.png'/>
         </div>
-
-
+        <div style={{backgroundSize: '70rem', backgroundPositionY: '-50px', backgroundPositionX: '45px'}} className='h-screen bg-[#3b3d4c] bg-auth-form-bg bg-no-repeat bg-blend-luminosity inline-block cursor-pointer ease-in-out duration-300 flex items-center justify-center'>
+          <AuthForm/>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'auth-form-bg': "url('../src/shared/assets/bg-auth.png')",
+      },
       colors: {
         'main-blue': '#34B3F1',
         'main-dark': '#111828',
@@ -15,8 +18,7 @@ module.exports = {
         {
           '5/95': '5% 95%',
           'fixed': '40px 260px',
-          '60/40/60': '60% 40% 60%',
-          '40/60/40': '40% 60% 40%',
+          '60/40': '60% 40%',
         },
       fontFamily: {
         'roboto': ['Roboto', 'sans-serif'],

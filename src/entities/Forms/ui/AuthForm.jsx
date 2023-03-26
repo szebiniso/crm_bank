@@ -1,23 +1,21 @@
-import React, {useRef} from "react";
-import Input from "../../../shared/ui/Input";
-import Button from "../../../shared/ui/Button";
-import ForgetPassword from "../../../features/ui/ForgetPassword";
-import { NavLink, useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { AuthApi } from "../api/authApi";
 import { AtSymbolIcon, KeyIcon } from "@heroicons/react/24/outline";
 import { AuthSchema } from "../../../shared/utils/yup";
 import {useDispatch, useSelector} from "react-redux";
 import InputNew from "../../../shared/ui/InputNew";
-import ReCAPTCHA from "react-google-recaptcha"
+import {closeAuthErrorAlert} from "../api/AuthSlice";
+// import ReCAPTCHA from "react-google-recaptcha"
 
 const AuthForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {authLoading} = useSelector(state => state.auth)
+  const {authLoading, authError} = useSelector(state => state.auth)
 
   // const captchaRef = useRef(null)
-
+  // authError && alert('Неправильно введен логин или пароль! :(')
 
   const formik = useFormik({
     initialValues: {
@@ -28,6 +26,7 @@ const AuthForm = () => {
     validationSchema: AuthSchema,
     onSubmit: (data) => {
       console.log(data);
+      dispatch(closeAuthErrorAlert())
       // const token = captchaRef.current.getValue();
       // console.log(token)
       // captchaRef.current.reset();
@@ -37,13 +36,13 @@ const AuthForm = () => {
   });
 
   return (
-      <div className='w-[80%] flex flex-col gap-10 justify-center'>
+      <div className='w-[80%] flex flex-col gap-8 mt-24 mr-4 justify-center'>
         <h3 className='font-roboto m-auto text-3xl font-bold text-gray-200 md:text-xl lg:text-[1.6rem] xl:text-[1.6rem] 2xl:text-3xl'>Авторизоваться</h3>
         <form onSubmit={formik.handleSubmit} className='flex flex-col gap-7 z-10'>
-          <InputNew onChange={formik.handleChange} placeholder='Введите почту' type='email' name='email' label='Почта' >
+          <InputNew error={formik.errors.email} touched={formik.touched.email} onChange={formik.handleChange} type='email' placeholder='Введите почту' name='email' label='Почта' >
             <AtSymbolIcon className="h-5 text-gray-400 px-2" />
           </InputNew>
-          <InputNew onChange={formik.handleChange} placeholder='Введите пароль' type='password' name='password' label='Пароль'>
+          <InputNew error={formik.errors.password} touched={formik.touched.password} onChange={formik.handleChange} type='password' placeholder='Введите пароль' name='password' label='Пароль'>
             <KeyIcon className="h-5 text-gray-400 px-2" />
           </InputNew>
 
@@ -67,7 +66,7 @@ const AuthForm = () => {
               </svg>
               Loading...
             </button> : <button type="submit"
-                                className="font-roboto text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded text-sm px-5 py-2.5 text-center">
+                                className="font-roboto text-white bg-gradient-to-br from-green-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded text-sm px-5 py-2.5 text-center">
               Войти
             </button>
           }

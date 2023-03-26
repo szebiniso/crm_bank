@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../../shared/utils/axiosConfig";
+import {closeAuthErrorAlert} from "./AuthSlice";
 
 export const AuthApi = createAsyncThunk(
   "auth/authUser",
