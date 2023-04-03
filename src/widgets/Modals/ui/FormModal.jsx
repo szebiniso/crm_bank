@@ -11,20 +11,22 @@ export default function FormModal({
       showModal,
       setShowModal,
       children,
-      title
+      title,
+      full_height
     }) {
   return (
     <>
       {showModal ? (
         <>
           <div className="justify-center items-center flex overflow-x-hidden bg-black/40 overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+            <div className="relative w-1/3 my-6 mx-auto max-w-3xl">
               {/*content*/}
-              <div className="relative w-96 text-left p-14 bg-main-light-dark rounded-lg shadow dark:bg-gray-800 sm:p-14">
-                <div className="text-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                  <h3 className="text-xl font-semibold text-gray-300 dark:text-white">
+              <div style={full_height ? {height: '93vh'} : {}} className="relative w--full text-left overflow-x-hidden px-14 py-10 bg-gray-700 rounded-lg shadow dark:bg-gray-800 sm:px-14 sm:py-10">
+                {title && <div className="text-center pb-4 mb-4 rounded-t sm:mb-5 dark:border-gray-600">
+                  <h3 className="text-2xl font-semibold text-gray-300 dark:text-white">
                     {title}
                   </h3>
+                </div>}
                   <button
                     onClick={setShowModal}
                     type="button"
@@ -46,7 +48,6 @@ export default function FormModal({
                     </svg>
                     <span className="sr-only">Close modal</span>
                   </button>
-                </div>
                 {children}
               </div>
             </div>

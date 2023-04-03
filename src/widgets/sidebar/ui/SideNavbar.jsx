@@ -6,14 +6,14 @@ import {
   UserGroupIcon,
   ChartBarIcon,
   ArrowRightOnRectangleIcon,
-  RectangleStackIcon, TableCellsIcon,
+  RectangleStackIcon, TableCellsIcon, BuildingOfficeIcon
 } from "@heroicons/react/24/solid";
-import ProjectsList from "../../../entities/Projects/ui/ProjectsList";
-import Drawer from "../../Drawer/Drawer";
-import ProjectOptionWidget from "../../ProjectOptionWidget/ui";
+import {getCookie} from "../../../shared/utils/Cookies";
 
 const SideNavbar = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+
+  const role = getCookie('role')
+  const isSuperAdmin = getCookie('is_super_admin')
 
   return (
     <>
@@ -30,38 +30,69 @@ const SideNavbar = () => {
         <br />
         <div className="flex flex-col justify-between h-screen">
           <ul>
-            <li onClick={() => setIsOpen(true)}>
-              <NavLink to="/projects">
-                <SideBarIcon
-                  title="Главная страница"
-                  icon={<SquaresPlusIcon className="w-9" />}
-                />
-              </NavLink>
-            </li>
-            <li onClick={() => setIsOpen(true)}>
-              <NavLink to="/projects">
-                <SideBarIcon
-                  title="Проекты"
-                  icon={<TableCellsIcon className="w-9" />}
-                />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/users">
-                <SideBarIcon
+            {role === 'Менеджер' && <>
+              <li>
+                <NavLink to="/main/admins">
+                  <SideBarIcon
+                    title="Админы"
+                    icon={<SquaresPlusIcon className="w-9" />}
+                  />
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/main/organizations">
+                  <SideBarIcon
+                    title="Организации"
+                    icon={<BuildingOfficeIcon  className="w-9" />}
+                  />
+                </NavLink>
+              </li>
+            </>}
+            {role === 'Менедже' && <>
+                <li>
+                  <NavLink to="/main/projects">
+                    <SideBarIcon
+                      title="Проекты"
+                      icon={<SquaresPlusIcon className="w-9" />}
+                    />
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/main/users">
+                  <SideBarIcon
                   title="Исполнители"
                   icon={<UserGroupIcon className="w-9" />}
-                />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/projects">
-                <SideBarIcon
-                  title="Статистика"
-                  icon={<ChartBarIcon className="w-9" />}
-                />
-              </NavLink>
-            </li>
+                  />
+                  </NavLink>
+                </li>
+              <li>
+                <NavLink to="/main/iterations">
+                  <SideBarIcon
+                    title="Итерации"
+                    icon={<TableCellsIcon className="w-9" />}
+                  />
+                </NavLink>
+              </li>
+              </>}
+            {role === 'Менедже' && <>
+              <li>
+                <NavLink to="/main/projects">
+                  <SideBarIcon
+                    title="Проекты"
+                    icon={<UserGroupIcon className="w-9" />}
+                  />
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/main/project_managers">
+                  <SideBarIcon
+                    title="Проект менеджеры"
+                    icon={<ChartBarIcon className="w-9" />}
+                  />
+                </NavLink>
+              </li>
+            </>}
+
           </ul>
           <NavLink to="/">
             <SideBarIcon
@@ -71,18 +102,6 @@ const SideNavbar = () => {
           </NavLink>
         </div>
       </div>
-      <Drawer setIsOpen={() => setIsOpen(false)} isOpen={isOpen}>
-        <ProjectOptionWidget/>
-      </Drawer>
-
-      {/*<div*/}
-      {/*  id="drawer-example"*/}
-      {/*  className=" basis-auto fixed top-0 left-0 z-40 h-screen overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800"*/}
-      {/*  // tabindex="-1"*/}
-      {/*  aria-labelledby="drawer-label"*/}
-      {/*>*/}
-      {/*  <ProjectsList />*/}
-      {/*</div>*/}
     </>
   );
 };

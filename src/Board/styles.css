@@ -1,9 +1,0 @@
-.dnd {
-    display: flex;
-    gap: 30px;
-}
-
-.column {
-    border-right: 1px solid black;
-    margin-right: 20px;
-}

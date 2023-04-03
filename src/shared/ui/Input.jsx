@@ -1,41 +1,36 @@
-import React, { FC } from "react";
+import React from 'react';
+import {KeyIcon} from "@heroicons/react/24/outline";
 
-const Input = ({
-  label,
-  placeholder,
-  type,
-  error,
-  touched,
-  autoComplete,
-  onChange,
-  name,
-  children,
-}) => {
+const Input = ({label,
+                    placeholder,
+                    type,
+                    error,
+                    touched,
+                    autoComplete,
+                    onChange,
+                    name,
+                    value,
+                    children,}) => {
   return (
-    <div className="h-[5rem] mb-3 md:mb-1">
-      <label
-        htmlFor="input-group-1"
-        className="block mb-1 text-sm font-medium text-gray-600 dark:text-white"
-      >
-        {label}
-      </label>
-      <div className="relative">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          {children}
+    <div className='border-y border-gray-500'>
+      <div className="flex items-center bg-inherit w-full border-x-2 border-[#3e9db4] m-auto h-full">
+        {children}
+        <div className='flex flex-col w-full border-x border-gray-500'>
+          <label
+            className="font-roboto text-sm pl-3 py-1 border-b border-gray-500 font-bold text-[#b99a47] md:pl-1 lg:pl-1 xl:pl-2"
+          >
+            {label}
+          </label>
+          <input
+            value={value}
+            type={type}
+            name={name}
+            onChange={onChange}
+            className="font-roboto w-full bg-inherit focus:ring-blue-500 border-none outline-none text-gray-200 md:p-1 lg:p-2 2xl:p-2 md:text-1 lg:text-1 xl:text-1 "
+            placeholder={placeholder}
+          />
         </div>
-        <input
-          type={type}
-          id="input-group-1"
-          name={name}
-          autoComplete={autoComplete}
-          onChange={onChange}
-          className="bg-white-50 border md:text border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder={placeholder}
-        />
       </div>
-      {error && touched && (
-        <p className="mt-0.5 text-sm text-red-500 dark:text-red-500">{error}</p>
-      )}
     </div>
   );
 };

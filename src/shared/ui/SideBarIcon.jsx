@@ -1,15 +1,12 @@
 import React from "react";
 
-const SideBarIcon = (props: {
-  title?: string;
-  icon: string | JSX.Element | JSX.Element[];
-}) => (
+const SideBarIcon = ({title, icon}) => (
   <div className="sidebar-icon group">
-    {props.icon}
+    {icon}
 
-    {props.title && (
+    {title && (
       <span className="sidebar-tooltip group-hover:scale-100">
-        {props.title}
+        {title}
       </span>
     )}
   </div>

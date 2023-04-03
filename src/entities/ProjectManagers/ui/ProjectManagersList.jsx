@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
-import UserCard from "./UserCard";
 import {useDispatch, useSelector} from "react-redux";
-import {getUsers} from "../api/UsersSliceFunctions";
+import UserCard from "../../Users/ui/UserCard";
+import {getUsers} from "../../Users/api/UsersSliceFunctions";
 
-const UsersList = () => {
+const ProjectManagersList = () => {
   const dispatch = useDispatch()
   const {users} = useSelector(store => store.users)
 
@@ -27,4 +27,4 @@ const UsersList = () => {
   );
 };
 
-export default UsersList;
+export default ProjectManagersList;

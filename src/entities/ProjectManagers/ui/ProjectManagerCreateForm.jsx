@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import {useDispatch} from "react-redux";
 import Input from "../../../shared/ui/Input";
 import {AtSymbolIcon} from "@heroicons/react/24/outline";
-import {createUser} from "../api/UsersSliceFunctions";
+import {createUser} from "../../Users/api/UsersSliceFunctions";
 
 export default function ProjectManagerCreateForm({closeModal}) {
   const [imgFile, setImg] = useState();

@@ -1,28 +1,18 @@
 import React, { lazy } from "react";
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
-  Link,
-  Navigate,
 } from "react-router-dom";
-import Registration from "./Registration";
+import MainRouting from "./MainRouting";
 import Auth from "./Auth";
-import MainRouting from "./mainPage";
-import UsersRouting from "./usersPage";
-import LoginDrawer from "../LoginRegister/LoginDrawer";
 
 // const TestPage = lazy(() => import("./test"));
 
 export const Routing = () => {
   return (
-    <Routes>
-      <Route path="/projects" element={<MainRouting />} />
-      <Route path="/users" element={<UsersRouting />} />
-      {/*<Route path="/" element={<Auth />} />*/}
-      <Route path="/" element={<LoginDrawer />} />
-      <Route path="/registration" element={<Registration />} />
-      {/*<Navigate to="/" />*/}
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Auth />} />
+        <Route path="/main/*" element={<MainRouting />} />
+      </Routes>
   );
 };

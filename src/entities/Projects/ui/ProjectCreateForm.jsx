@@ -3,28 +3,14 @@ import { CameraIcon } from "@heroicons/react/20/solid";
 import Button from "../../../shared/ui/Button";
 import { useFormik } from "formik";
 import {useDispatch} from "react-redux";
+import {createUser,} from "../../Users/api/UsersSliceFunctions";
 import Input from "../../../shared/ui/Input";
 import {AtSymbolIcon} from "@heroicons/react/24/outline";
-import {createUser} from "../api/UsersSliceFunctions";
 
-export default function ProjectManagerCreateForm({closeModal}) {
-  const [imgFile, setImg] = useState();
-  const [image, setImage] = useState();
-
-  const dispatch = useDispatch()
-
-  const onImageChange = (event) => {
-    const file = event.target.files?.[0];
-    setImg(file);
-
-    if (event.target.files?.[0]) {
-      setImage(URL.createObjectURL(event.target.files?.[0]));
-    }
-  };
+export default function ProjectCreateForm({closeModal}) {
 
   const formik = useFormik({
     initialValues: {
-      // photo: imgFile,
       first_name: "",
       last_name: "",
       position: "",
@@ -32,14 +18,8 @@ export default function ProjectManagerCreateForm({closeModal}) {
     enableReinitialize: true,
     onSubmit: (values) => {
       console.log(values);
-      // console.log("img", imgFile);
-      // const fData = new FormData();
-      // fData.append("photo", imgFile, imgFile.name);
-      // fData.append("first_name", values.first_name);
-      // fData.append("last_name", values.last_name);
-      // fData.append("position", values.position);
-      const data = {values, closeModal}
-      dispatch(createUser(data))
+      // const data = {values, closeModal}
+      // dispatch(createUser(data))
     },
   });
 
@@ -48,31 +28,8 @@ export default function ProjectManagerCreateForm({closeModal}) {
       <form
         onSubmit={formik.handleSubmit}
         className="flex flex-col justify-center items-center "
-        action="#"
+        action="src/entities/Users/ui#"
       >
-        <div>
-          <label
-            htmlFor="image"
-            className="cursor-pointer w-32 h-36 t-4 bg-transparent shadow-blue border border-[#3e9db4] rounded-lg relative flex justify-center mb-6"
-          >
-            <div className="w-full h-full flex justify-center items-center">
-              <CameraIcon className="h-12 w-12 text-gray-500" />
-            </div>
-            <img
-              className="absolute t-0 w-full h-full rounded-lg object-cover"
-              src={image}
-              alt=""
-            />
-          </label>
-          <input
-            onChange={onImageChange}
-            type="file"
-            name="photo"
-            id="image"
-            // value={formik.values.фото}
-            className="invisible absolute"
-          />
-        </div>
         <div className="w-full flex flex-col gap-7 z-10">
           <Input error={formik.errors.email} touched={formik.touched.email} onChange={formik.handleChange} type='text' placeholder='Введите имя' name='first_name' label='Имя' >
             <AtSymbolIcon className="h-5 text-gray-400 px-2" />

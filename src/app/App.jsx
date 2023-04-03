@@ -12,14 +12,10 @@
 
 import { withProviders } from "./providers";
 import {Routing} from "../pages";
-import Board from "../Board";
 
 const App = () => {
   return (
-    // <Dashboard />
-    //   <Board/>
     <Routing />
-    // <Registration/>
   );
 };
 
