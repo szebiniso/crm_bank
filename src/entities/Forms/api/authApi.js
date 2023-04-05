@@ -10,7 +10,7 @@ export const AuthApi = createAsyncThunk(
       console.log(response.data);
       setCookie('role', response.data.role, 1)
       setCookie('is_super_admin', response.data.is_superuser, 1)
-      data.navigate("/main/admins");
+      data.navigate("/main");
       console.log(response.data)
       return response.data;
     } catch (e) {

@@ -14,6 +14,7 @@ const SideNavbar = () => {
 
   const role = getCookie('role')
   const isSuperAdmin = getCookie('is_super_admin')
+  console.log('role',role)
 
   return (
     <>
