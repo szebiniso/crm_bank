@@ -9,8 +9,9 @@ export const AuthApi = createAsyncThunk(
       const response = await API.post("login/", data.data);
       console.log(response.data);
       setCookie('role', response.data.role, 1)
+      localStorage.setItem('role', response.data.role)
       setCookie('is_super_admin', response.data.is_superuser, 1)
-      data.navigate("/main");
+      data.navigate("/main/admins");
       console.log(response.data)
       return response.data;
     } catch (e) {

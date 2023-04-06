@@ -19,7 +19,7 @@ const MainRouting = () => {
       <SideNavbar />
       <Routes>
         {/*Super Admin*/}
-        <Route path="/" element={<Admins />} />
+        <Route path="/admins" element={<Admins />} />
         <Route path="/organizations" element={<Organizations />} />
 
         {/*Admin*/}

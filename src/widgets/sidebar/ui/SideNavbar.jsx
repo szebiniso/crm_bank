@@ -12,7 +12,8 @@ import {getCookie} from "../../../shared/utils/Cookies";
 
 const SideNavbar = () => {
 
-  const role = getCookie('role')
+  const roleFromCookies = getCookie('role')
+  const role = localStorage.getItem('role')
   const isSuperAdmin = getCookie('is_super_admin')
   console.log('role',role)
 
