@@ -99,7 +99,7 @@ const SideNavbar = () => {
 
           </ul>
           <NavLink to="/">
-            <SideBarIcon onClick={() => Cookies.remove('role')}
+            <SideBarIcon onClick={() => localStorage.removeItem('role')}
               title="Выход"
               icon={<ArrowRightOnRectangleIcon className="w-9" />}
             />
