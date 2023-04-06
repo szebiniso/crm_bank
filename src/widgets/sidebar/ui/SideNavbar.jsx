@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { NavLink } from "react-router-dom";
 import SideBarIcon from "../../../shared/ui/SideBarIcon";
 import {
@@ -8,15 +8,16 @@ import {
   ArrowRightOnRectangleIcon,
   RectangleStackIcon, TableCellsIcon, BuildingOfficeIcon
 } from "@heroicons/react/24/solid";
-import {getCookie} from "../../../shared/utils/Cookies";
+import {getCookie, removeCookie} from "../../../shared/utils/Cookies";
 import Cookies from 'js-cookie';
 
 const SideNavbar = () => {
 
   const roleFromCookies = getCookie('role')
-  const role = Cookies.get('role');
+  const role = localStorage.getItem('role');
   const isSuperAdmin = getCookie('is_super_admin')
-  console.log('role',role)
+  console.log('role', role)
+
 
   return (
     <>
@@ -98,7 +99,7 @@ const SideNavbar = () => {
 
           </ul>
           <NavLink to="/">
-            <SideBarIcon
+            <SideBarIcon onClick={() => Cookies.remove('role')}
               title="Выход"
               icon={<ArrowRightOnRectangleIcon className="w-9" />}
             />

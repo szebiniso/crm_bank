@@ -1,7 +1,7 @@
 import React from "react";
 
-const SideBarIcon = ({title, icon}) => (
-  <div className="sidebar-icon group">
+const SideBarIcon = ({title, icon, onClick}) => (
+  <div className="sidebar-icon group" onClick={onClick}>
     {icon}
 
     {title && (
