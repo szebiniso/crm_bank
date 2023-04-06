@@ -9,11 +9,12 @@ import {
   RectangleStackIcon, TableCellsIcon, BuildingOfficeIcon
 } from "@heroicons/react/24/solid";
 import {getCookie} from "../../../shared/utils/Cookies";
+import Cookies from 'js-cookie';
 
 const SideNavbar = () => {
 
   const roleFromCookies = getCookie('role')
-  const role = localStorage.getItem('role')
+  const role = Cookies.get('role');
   const isSuperAdmin = getCookie('is_super_admin')
   console.log('role',role)
 
@@ -32,7 +33,7 @@ const SideNavbar = () => {
         <br />
         <div className="flex flex-col justify-between h-screen">
           <ul>
-            {/*{role === 'Менеджер' && <>*/}
+            {role === 'Менеджер' && <>
               <li>
                 <NavLink to="/main/admins">
                   <SideBarIcon
@@ -49,7 +50,7 @@ const SideNavbar = () => {
                   />
                 </NavLink>
               </li>
-            {/*</>}*/}
+            </>}
             {role === 'Менедже' && <>
                 <li>
                   <NavLink to="/main/projects">
