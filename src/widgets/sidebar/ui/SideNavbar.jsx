@@ -32,7 +32,7 @@ const SideNavbar = () => {
         <br />
         <div className="flex flex-col justify-between h-screen">
           <ul>
-            {role === 'Менеджер' && <>
+            {/*{role === 'Менеджер' && <>*/}
               <li>
                 <NavLink to="/main/admins">
                   <SideBarIcon
@@ -49,7 +49,7 @@ const SideNavbar = () => {
                   />
                 </NavLink>
               </li>
-            </>}
+            {/*</>}*/}
             {role === 'Менедже' && <>
                 <li>
                   <NavLink to="/main/projects">
