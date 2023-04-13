@@ -76,13 +76,13 @@ export default function ProjectManagersList({lessons}) {
           </div>        }
       </div>
       {
-        count > 10 && <div className='flex fixed gap-4 left-9 bottom-6 w-full justify-center items-center'>
+        count > 10 && <div className='flex fixed gap-4 left-9 bottom-4 w-full justify-center items-center'>
           <button className='text-gray-700 text-4xl' style={currentPage ? {cursor: 'pointer'} : null} disabled={currentPage === 0 ? true : false} onClick={decrement}>
             &#8592;
           </button>
           {
             countArr.map(i => {
-              return <span onClick={() => handlePaginate(i)} style={currentPage === i*10 ? {color: "lightgray", fontSize: '20px', height: '45px', width: '45px', border: '1px solid silver'} : null} className='text-gray-300 p-2 rounded-full cursor-pointer w-10 h-10 text-center border border-gray-700'>{i+1}</span>
+              return <span onClick={() => handlePaginate(i)} style={currentPage === i*10 ? {color: "lightgray", fontSize: '20px', padding: '3px 14px', border: '1px solid silver'} : null} className='text-gray-300 px-3 py-1 rounded-full cursor-pointer text-center border border-gray-700'>{i+1}</span>
             })
           }
           <button className='text-gray-700 text-4xl'  style={currentPage !== count-10 ? {cursor: 'pointer'} : null} disabled={currentPage+10 > count ? true : false} onClick={increment}>
