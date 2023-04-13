@@ -38,7 +38,7 @@ const AuthForm = () => {
 
   return (
       <div className='w-[80%] flex flex-col gap-8 mt-24 mr-4 justify-center'>
-        <h3 className='font-roboto m-auto text-3xl font-bold text-gray-200 md:text-xl lg:text-[1.6rem] xl:text-[1.6rem] 2xl:text-3xl'>Авторизоваться</h3>
+        <h3 className='m-auto text-3xl font-bold text-gray-200 md:text-xl lg:text-[1.6rem] xl:text-[1.6rem] 2xl:text-3xl'>Авторизоваться</h3>
         <form onSubmit={formik.handleSubmit} className='flex flex-col gap-7 z-10'>
           <Input error={formik.errors.email} touched={formik.touched.email} onChange={formik.handleChange} type='email' placeholder='Введите почту' name='email' label='Почта' >
             <AtSymbolIcon className="h-5 text-gray-400 px-2" />

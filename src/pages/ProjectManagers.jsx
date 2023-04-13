@@ -4,7 +4,7 @@ import FormModal from "../widgets/Modals/ui/FormModal";
 import Header from "../shared/ui/Header";
 import HeaderWithOptions from "../shared/ui/HeaderWithOptions";
 import ProjectManagersList from "../entities/ProjectManagers/ui/ProjectManagersList";
-import ProjectManagerCreateForm from "../entities/Users/ui/UserCreateForm";
+import ProjectManagerCreateForm from "../entities/ProjectManagers/ui/ProjectManagerCreateForm";
 
 const ProjectManagers = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -23,8 +23,8 @@ const ProjectManagers = () => {
 
         <ProjectManagersList/>
 
-        <FormModal
-          title="Создать проектного менеджера"
+        <FormModal full_height='true'
+          title="Создать менеджера"
           showModal={showCreateModal}
           setShowModal={handleCloseCreateModal}
         >

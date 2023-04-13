@@ -5,6 +5,9 @@ import {useDispatch} from "react-redux";
 import {createUser} from "../../Users/api/UsersSliceFunctions";
 import AdminForm from "./AdminForm";
 import OrganizationForm from "./OrganizationForm";
+import forgetPassword from "../../../features/ui/ForgetPassword";
+import organizationForm from "./OrganizationForm";
+import {createOrganization} from "../api/OrganizationApi";
 
 export default function OrganizationWithAdminCreateForm({closeModal}) {
 
@@ -27,30 +30,31 @@ export default function OrganizationWithAdminCreateForm({closeModal}) {
   const [orgPhone, setOrgPhone] = useState('');
   const [orgImage, setOrgImage] = useState();
 
-  const hasNotEmptyField = () => {
-    return name && surname && email && phone && password && title && type && description && orgEmail && orgPhone
-  }
+  const hasNotEmptyField = name && surname && email && phone && password && title && type && description && orgEmail && orgPhone
 
   const dispatch = useDispatch()
 
   const formik = useFormik({
     initialValues: {
-      // photo: imgFile,
-      first_name: name,
-      last_name: surname,
-      position: email,
+      name: title,
+      field: type,
+      description: description,
+      email: orgEmail,
+      phone_number: orgPhone,
+      admin: {
+        first_name: name,
+        last_name: surname,
+        phone_number: phone,
+        email: email,
+        password: password,
+        // role: 'Менеджер'
+      }
     },
     enableReinitialize: true,
     onSubmit: (values) => {
       console.log(values);
-      // console.log("img", imgFile);
-      // const fData = new FormData();
-      // fData.append("photo", imgFile, imgFile.name);
-      // fData.append("first_name", values.first_name);
-      // fData.append("last_name", values.last_name);
-      // fData.append("position", values.position);
       const data = {values, closeModal}
-      dispatch(createUser(data))
+      dispatch(createOrganization(data))
     },
   })
 
@@ -94,7 +98,7 @@ export default function OrganizationWithAdminCreateForm({closeModal}) {
         password={password} passwordChange={setPassword}
       />}
       <div className='w-full flex flex-col mt-7'>
-        <Button toolExist='true' disabled={!(name && surname && email && phone && password && title && type && description && orgEmail && orgPhone)} type="submit" text='Создать'/>
+        <Button toolExist='true' disabled={!hasNotEmptyField} type="submit" text='Создать'/>
       </div>
     </form>
   );

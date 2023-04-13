@@ -5,7 +5,7 @@ const Button = ({type, text, loading, disabled= false, toolExist, tooltipText}) 
     <>
       <button type={type}
               disabled={disabled}
-              className="group font-roboto text-white bg-gradient-to-br from-green-500 to-blue-500 disabled:opacity-50 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded text-sm px-5 py-2.5 text-center">
+              className="group text-white bg-gradient-to-br from-green-500 to-blue-500 disabled:opacity-50 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded text-sm px-5 py-2.5 text-center">
         {
           !loading ? text : <>
             <svg aria-hidden="true" role="status" className="inline w-4 h-4 mr-3 text-white animate-spin"

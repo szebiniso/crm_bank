@@ -1,33 +1,28 @@
 import axios from "axios";
 
-const token = localStorage.getItem('token')
-
-const API = axios.create({
-  // withCredentials: true,
-  baseURL: process.env.REACT_APP_API_URL,
-  // withCredentials: true,
-  headers: {
-    // Authorization: `Bearer ${token}`,
-    "Content-Type": "application/json",
-  },
-});
-
-// export const APIwithToken = axios.create({
-//   // withCredentials: true,
+// const APIwithToken = axios.create({
+//   withCredentials: true,
 //   baseURL: process.env.REACT_APP_API_URL,
-//   // withCredentials: true,
 //   headers: {
 //     // Authorization: `Bearer ${token}`,
 //     "Content-Type": "application/json",
 //   },
 // });
-//
-// APIwithToken.interceptors.request.use(
-//   async req => {
-//     req.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
-//     return req;
-//   }
-// )
+
+const APIwithToken = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    // 'accept': 'application/json',
+  }
+})
+
+APIwithToken.interceptors.request.use(
+  async req => {
+    req.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+    return req;
+  }
+)
 // APIwithToken.interceptors.request.use((config) => {
 //   config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
 // })
@@ -47,4 +42,4 @@ const API = axios.create({
 
 // axios.defaults.withCredentials = true
 
-export default API;
+export default APIwithToken;

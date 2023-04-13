@@ -3,7 +3,6 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Users from "./Users";
 import SideNavbar from "../widgets/sidebar/ui/SideNavbar";
 import Projects from "./Projects";
 import Admins from "./Admins";
@@ -27,8 +26,7 @@ const MainRouting = () => {
         <Route path="/project_managers" element={<ProjectManagers />} />
 
         {/*Project Manager*/}
-        <Route path="/projects" element={<Users />} />
-        <Route path="/users" element={<Users />} />
+        <Route path="/projects" element={<Projects />} />
         <Route path="/iterations" element={<Iterations />} />
       </Routes>
     </div>

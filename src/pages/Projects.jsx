@@ -7,6 +7,7 @@ import Container from "../shared/ui/Container";
 
 const Projects = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const role = localStorage.getItem('role')
 
   const handleCloseCreateModal = () => {
     setShowCreateModal(false)
@@ -15,11 +16,13 @@ const Projects = () => {
   return (
     <>
       <Container>
-          <Header title='Существующие проекты' onChange={() => setShowCreateModal(true)} isButtonExist='true'/>
+        {
+          role === 'Менеджер' ? <Header title='Существующие проекты' onChange={() => setShowCreateModal(true)}/> : <Header title='Существующие проекты' onChange={() => setShowCreateModal(true)} isButtonExist='true'/>
+        }
           <ProjectsList/>
       </Container>
 
-      <FormModal
+      <FormModal full_height='true'
         title="Создать проект"
         showModal={showCreateModal}
         setShowModal={handleCloseCreateModal}

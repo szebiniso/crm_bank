@@ -24,20 +24,16 @@ export default function ProjectManagerCreateForm({closeModal}) {
 
   const formik = useFormik({
     initialValues: {
-      // photo: imgFile,
       first_name: "",
       last_name: "",
-      position: "",
+      phone_number: "",
+      email: "",
+      role: "Менеджер",
+      password: "",
     },
     enableReinitialize: true,
     onSubmit: (values) => {
       console.log(values);
-      // console.log("img", imgFile);
-      // const fData = new FormData();
-      // fData.append("photo", imgFile, imgFile.name);
-      // fData.append("first_name", values.first_name);
-      // fData.append("last_name", values.last_name);
-      // fData.append("position", values.position);
       const data = {values, closeModal}
       dispatch(createUser(data))
     },
@@ -82,7 +78,15 @@ export default function ProjectManagerCreateForm({closeModal}) {
             <AtSymbolIcon className="h-5 text-gray-400 px-2" />
           </Input>
 
-          <Input error={formik.errors.email} touched={formik.touched.email} onChange={formik.handleChange} type='text' placeholder='Введите позицию' name='position' label='Позиция' >
+          <Input error={formik.errors.email} touched={formik.touched.email} onChange={formik.handleChange} type='text' placeholder='Введите почту' name='email' label='Почта' >
+            <AtSymbolIcon className="h-5 text-gray-400 px-2" />
+          </Input>
+
+          <Input error={formik.errors.email} touched={formik.touched.email} onChange={formik.handleChange} type='text' placeholder='Введите номер телефона' name='phone_number' label='Номер телефона' >
+            <AtSymbolIcon className="h-5 text-gray-400 px-2" />
+          </Input>
+
+          <Input error={formik.errors.email} touched={formik.touched.email} onChange={formik.handleChange} type='text' placeholder='Введите пароль' name='password' label='Пароль' >
             <AtSymbolIcon className="h-5 text-gray-400 px-2" />
           </Input>
           {/*{*/}

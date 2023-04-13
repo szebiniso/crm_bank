@@ -1,37 +1,35 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ProjectCard from "./ProjectCard";
+import {useDispatch, useSelector} from "react-redux";
+import {getProjects} from "../api/ProjectsSliceFunctions";
 
 const ProjectsList = () => {
 
-  const projects = [
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getProjects())
+  }, []);
+
+
+  const {projects} = useSelector(state => state.projects)
+
+  const data = [
     {id:1,
       name: "Новые",
-      items: [
-        { id: 1, content: "First task" },
-        { id: 2, content: "First task" },
-        { id: 3, content: "Third task" },
-      ]
+      items: projects.filter(i => i.status == 'Active')
     },
     {id:2,
       name: "В процессе",
-      items: [
-        { id: 1, content: "First task" },
-        { id: 2, content: "Second task" },
-      ]
+      items: projects.filter(i => i.status == 'Active')
     },
     {id:3,
       name: "Успешно законченные",
-      items: [
-        { id: 1, content: "First task" },
-        { id: 2, content: "Second task" },
-        { id: 3, content: "Third task" },
-      ]
+      items: projects.filter(i => i.status == 'Completed')
     },
     { id:4,
       name: "Проваленные",
-      items: [
-        { id: 1, content: "First task" },
-      ]
+      items: projects.filter(i => i.status == 'Failed')
     }
   ];
 
@@ -39,12 +37,12 @@ const ProjectsList = () => {
   return (
     <div className='flex justify-start flex-col w-full'>
         {
-          projects.map((el, i) => {
+          data.map((el, i) => {
             return <>
               <h2 className='mt-5 ml-2 text-md font-semibold text-gray-300 dark:text-gray-300'>{el.name}</h2>
                 <div className='p-2 flex gap-2 overflow-x-scroll'>
                   {el.items.map((item, index) => {
-                    return <ProjectCard title={item.content}/>
+                    return <ProjectCard title={item.name}/>
                   })}
                 </div>
             </>

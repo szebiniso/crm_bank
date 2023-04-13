@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {getUserById, getUsers} from "./UsersSliceFunctions";
-import {RegisterApi} from "../../Forms/api/registerApi";
+import {getManagers, getUserById, getUsers} from "./UsersSliceFunctions";
 
 
 const initialState = {
   users: [],
   userById:{},
-  error:{}
+  managers: [],
+  error:{},
+  loading: false
 };
 
 const usersSlice = createSlice({
@@ -24,6 +25,7 @@ const usersSlice = createSlice({
     [getUsers.rejected]: (state) => {
       state.loading = false
     },
+
     [getUserById.pending]: (state) => {
       state.loading = true;
     },
@@ -32,6 +34,17 @@ const usersSlice = createSlice({
       state.userById = action.payload
     },
     [getUserById.rejected]: (state) => {
+      state.loading = false
+    },
+
+    [getManagers.pending]: (state) => {
+      state.loading = true;
+    },
+    [getManagers.fulfilled]: (state, action) => {
+      state.loading = false
+      state.managers = action.payload
+    },
+    [getManagers.rejected]: (state) => {
       state.loading = false
     },
   },

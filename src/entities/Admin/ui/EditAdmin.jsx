@@ -10,9 +10,10 @@ import Input from "../../../shared/ui/Input";
 import {useDispatch} from "react-redux";
 import Button from "../../../shared/ui/Button";
 import {useFormik} from "formik";
-import {editOrganization} from "../api/OrganizationApi";
+import {editOrganization} from "../../Organization/api/OrganizationApi";
+import {editAdmin} from "../api/EditAdminApi";
 
-const EditOrganization = ({closeModal, organization, closeDetailsModal}) => {
+const EditAdmin = ({closeModal, organization}) => {
 
   const [imgFile, setImg] = useState();
   const [image, setImage] = useState();
@@ -28,12 +29,14 @@ const EditOrganization = ({closeModal, organization, closeDetailsModal}) => {
     }
   };
 
+  const admin = organization.admin_data
+
   const formik = useFormik({
     initialValues: organization,
     onSubmit: values => {
       console.log("edit", values)
-      const data = {closeModal, values, closeDetailsModal}
-      dispatch(editOrganization(data))
+      const data = {closeModal, values}
+      dispatch(editAdmin(data))
     }
   })
 
@@ -63,23 +66,19 @@ const EditOrganization = ({closeModal, organization, closeDetailsModal}) => {
         />
       </div>
       <div className="w-full flex flex-col gap-7 z-10">
-        <Input onChange={formik.handleChange} value={formik.values.name} type='text' placeholder='Введите имя' name='name' label='Название' >
+        <Input onChange={formik.handleChange} value={formik.values.admin_data.first_name} type='text' placeholder='Введите имя' name='admin_data.first_name' label='Название' >
           <BuildingOfficeIcon className="h-5 text-gray-400 px-2" />
         </Input>
 
-        <Input onChange={formik.handleChange} value={formik.values.field} type='text' placeholder='Введите фамилию' name='field' label='Тип деятельности' >
+        <Input onChange={formik.handleChange} value={formik.values.admin_data.last_name} type='text' placeholder='Введите фамилию' name='admin_data.last_name' label='Фамилия' >
           <RectangleGroupIcon className="h-5 text-gray-400 px-2" />
         </Input>
 
-        <Input onChange={formik.handleChange} value={formik.values.description} type='text' placeholder='Описание' name='description' label='Описание' >
-          <Bars3BottomLeftIcon className="h-5 text-gray-400 px-2" />
-        </Input>
-
-        <Input onChange={formik.handleChange} value={formik.values.email} type='text' placeholder='Введите почту' name='email' label='Почта' >
+        <Input onChange={formik.handleChange} value={formik.values.admin_data.email} type='text' placeholder='Введите почту' name='admin_data.email' label='Почта' >
           <AtSymbolIcon className="h-5 text-gray-400 px-2" />
         </Input>
 
-        <Input onChange={formik.handleChange} value={formik.values.phone_number} type='text' placeholder='Введите номер телефона' name='phone_number' label='Контакты' >
+        <Input onChange={formik.handleChange} value={formik.values.admin_data.phone_number} type='text' placeholder='Введите номер телефона' name='admin_data.phone_number' label='Контакты' >
           <PhoneIcon className="h-5 text-gray-400 px-2" />
         </Input>
 
@@ -90,4 +89,4 @@ const EditOrganization = ({closeModal, organization, closeDetailsModal}) => {
   );
 };
 
-export default EditOrganization;
+export default EditAdmin;

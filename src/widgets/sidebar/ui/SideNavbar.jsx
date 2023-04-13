@@ -8,15 +8,18 @@ import {
   ArrowRightOnRectangleIcon,
   RectangleStackIcon, TableCellsIcon, BuildingOfficeIcon
 } from "@heroicons/react/24/solid";
-import {getCookie, removeCookie} from "../../../shared/utils/Cookies";
-import Cookies from 'js-cookie';
 
 const SideNavbar = () => {
 
-  const roleFromCookies = getCookie('role')
   const role = localStorage.getItem('role');
-  const isSuperAdmin = getCookie('is_super_admin')
+  const is_super_admin = localStorage.getItem('is_super_admin');
   console.log('role', role)
+
+  const handleLogout = () => {
+    localStorage.removeItem('role')
+    localStorage.removeItem('token')
+    localStorage.removeItem('is_super_admin')
+  }
 
 
   return (
@@ -34,51 +37,29 @@ const SideNavbar = () => {
         <br />
         <div className="flex flex-col justify-between h-screen">
           <ul>
-            {role === 'Менеджер' && <>
-              <li>
-                <NavLink to="/main/admins">
-                  <SideBarIcon
-                    title="Админы"
-                    icon={<SquaresPlusIcon className="w-9" />}
-                  />
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/main/organizations">
-                  <SideBarIcon
-                    title="Организации"
-                    icon={<BuildingOfficeIcon  className="w-9" />}
-                  />
-                </NavLink>
-              </li>
-            </>}
-            {role === 'Менедже' && <>
+            {is_super_admin == 'true' && <>
                 <li>
-                  <NavLink to="/main/projects">
+                  <NavLink to="/main/admins">
                     <SideBarIcon
-                      title="Проекты"
+                      title="Админы"
                       icon={<SquaresPlusIcon className="w-9" />}
                     />
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/main/users">
-                  <SideBarIcon
-                  title="Исполнители"
-                  icon={<UserGroupIcon className="w-9" />}
-                  />
+                  <NavLink to="/main/organizations">
+                    <SideBarIcon
+                      title="Организации"
+                      icon={<BuildingOfficeIcon  className="w-9" />}
+                    />
                   </NavLink>
                 </li>
-              <li>
-                <NavLink to="/main/iterations">
-                  <SideBarIcon
-                    title="Итерации"
-                    icon={<TableCellsIcon className="w-9" />}
-                  />
-                </NavLink>
-              </li>
+
               </>}
-            {role === 'Менедже' && <>
+
+            {/*Admin*/}
+            {role == 'Админ' && is_super_admin == 'false' && <>
+
               <li>
                 <NavLink to="/main/projects">
                   <SideBarIcon
@@ -95,11 +76,31 @@ const SideNavbar = () => {
                   />
                 </NavLink>
               </li>
+
             </>}
 
+            {/*Project Manager*/}
+            {role === 'Менеджер' && <>
+                  <li>
+                    <NavLink to="/main/projects">
+                      <SideBarIcon
+                        title="Проекты"
+                        icon={<SquaresPlusIcon className="w-9" />}
+                      />
+                    </NavLink>
+                  </li>
+                <li>
+                  <NavLink to="/main/iterations">
+                    <SideBarIcon
+                      title="Итерации"
+                      icon={<TableCellsIcon className="w-9" />}
+                    />
+                  </NavLink>
+                </li>
+              </>}
           </ul>
           <NavLink to="/">
-            <SideBarIcon onClick={() => localStorage.removeItem('role')}
+            <SideBarIcon onClick={handleLogout}
               title="Выход"
               icon={<ArrowRightOnRectangleIcon className="w-9" />}
             />
