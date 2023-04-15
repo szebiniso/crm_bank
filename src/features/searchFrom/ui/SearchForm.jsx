@@ -25,8 +25,8 @@ const SearchForm = () => {
         <input
           type="text"
           id="simple-search"
-          className="block w-96 p-2 pl-10 text-sm placeholder-gray-100 text-gray-100 border border-gray-500 rounded-lg bg-gray-600 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-          placeholder="Search"
+          className="block w-96 p-2 pl-10 text-sm placeholder-gray-300 text-gray-100 border border-gray-500 rounded-lg bg-gray-600 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+          placeholder="Поиск..."
           required
         />
         {/*<button*/}

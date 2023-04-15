@@ -22,7 +22,7 @@ export default function FormModal({
             <div className="relative w-1/3 my-6 mx-auto max-w-3xl">
               {/*content*/}
               <div style={full_height ? {height: '93vh'} : {}} className="relative w--full text-left overflow-x-hidden px-14 py-10 bg-gray-700 rounded-lg shadow dark:bg-gray-800 sm:px-14 sm:py-10">
-                {title && <div className="text-center pb-4 mb-4 rounded-t sm:mb-5 dark:border-gray-600">
+                {title && <div className="text-center pb-4 mb-2 rounded-t sm:mb-2 dark:border-gray-600">
                   <h3 className="text-2xl font-semibold text-gray-300 dark:text-white">
                     {title}
                   </h3>

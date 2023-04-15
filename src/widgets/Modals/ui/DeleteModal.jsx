@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {deleteUser} from "../../../entities/Users/api/UsersSliceFunctions";
 
-export default function DeleteModal({ showModal, setShowModal, deleteDispatch}) {
+export default function DeleteModal({ showModal, text, setShowModal, deleteDispatch}) {
 
   return (
         <>
@@ -47,7 +47,7 @@ export default function DeleteModal({ showModal, setShowModal, deleteDispatch}) 
                     ></path>
                   </svg>
                   <p className="mb-4 text-gray-300 dark:text-gray-300">
-                    Вы уверены, что хотите удалить данного исполнителя?
+                    {text}
                   </p>
                   <div className="flex justify-center items-center space-x-4">
                     <button

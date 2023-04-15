@@ -3,6 +3,7 @@ import Input from "../../../shared/ui/Input";
 import {AtSymbolIcon} from "@heroicons/react/24/outline";
 import {Bars3BottomLeftIcon,BuildingOfficeIcon, CameraIcon, PhoneIcon, RectangleGroupIcon} from "@heroicons/react/24/outline";
 import {useDispatch} from "react-redux";
+import InputTextArea from "../../../shared/ui/InputTextArea";
 
 const OrganizationForm = ({
                             title, titleChange,
@@ -61,9 +62,7 @@ const OrganizationForm = ({
           <RectangleGroupIcon className="h-5 text-gray-400 px-2" />
         </Input>
 
-        <Input value={description} onChange={(e) => descriptionChange(e.target.value)} type='text' placeholder='Описание' name='3' label='Описание' >
-          <Bars3BottomLeftIcon className="h-5 text-gray-400 px-2" />
-        </Input>
+        <InputTextArea value={description} name='3' onChange={(e) => descriptionChange(e.target.value)} placeholder="Введите описание..." label='Описание' row='3'/>
 
         <Input value={orgEmail} onChange={(e) => orgEmailChange(e.target.value)} type='text' placeholder='Введите почту' name='3' label='Почта' >
           <AtSymbolIcon className="h-5 text-gray-400 px-2" />

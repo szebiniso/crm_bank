@@ -10,7 +10,7 @@ import {
   Bars3BottomLeftIcon,
   BuildingOfficeIcon,
   PhoneIcon,
-  RectangleGroupIcon
+  RectangleGroupIcon, UserIcon
 } from "@heroicons/react/24/outline";
 
 export default function ProjectManagerEditForm({user, closeModal}) {
@@ -18,11 +18,8 @@ export default function ProjectManagerEditForm({user, closeModal}) {
   const [image, setImage] = useState();
 
   const dispatch = useDispatch()
-  const {userById} = useSelector(state => state.users)
+  const {loading} = useSelector(state => state.users)
 
-  // useEffect(() => {
-  //   dispatch(getUserById(userId))
-  // }, []);
 
   const onImageChange = (event) => {
     if (event.target.files) {
@@ -72,11 +69,11 @@ export default function ProjectManagerEditForm({user, closeModal}) {
         </div>
         <div className="w-full flex flex-col gap-7 z-10">
           <Input value={formik.values.first_name} error={formik.errors.email} touched={formik.touched.first_name} onChange={formik.handleChange} type='text' placeholder='Введите имя' name='first_name' label='Имя' >
-            <AtSymbolIcon className="h-5 text-gray-400 px-2" />
+            <UserIcon className="h-5 text-gray-400 px-2" />
           </Input>
 
           <Input value={formik.values.last_name} error={formik.errors.email} touched={formik.touched.last_name} onChange={formik.handleChange} type='text' placeholder='Введите фамилию' name='last_name' label='Фамилия' >
-            <AtSymbolIcon className="h-5 text-gray-400 px-2" />
+            <UserIcon className="h-5 text-gray-400 px-2" />
           </Input>
 
           <Input value={formik.values.email} error={formik.errors.email} touched={formik.touched.email} onChange={formik.handleChange} type='text' placeholder='Введите почту' name='email' label='Почта' >
@@ -84,10 +81,12 @@ export default function ProjectManagerEditForm({user, closeModal}) {
           </Input>
 
           <Input value={formik.values.phone_number} error={formik.errors.email} touched={formik.touched.phone_number} onChange={formik.handleChange} type='text' placeholder='Введите номер телефона' name='phone_number' label='Номер телефона' >
-            <AtSymbolIcon className="h-5 text-gray-400 px-2" />
+            <PhoneIcon className="h-5 text-gray-400 px-2" />
           </Input>
 
-          <Button type="submit" text='Редактировать'/>
+          {
+            loading ? <Button disabled type="button" loading='true'/> : <Button type="submit" text='Редактировать'/>
+          }
 
         </div>
       </form>

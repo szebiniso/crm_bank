@@ -1,10 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getOrganizations} from "./OrganizationApi";
+import {createOrganization, editOrganization, getOrganizations} from "./OrganizationApi";
 
 const initialState = {
   loading: false,
   error: false,
-  organizations: []
+  createError: false,
+  organizations: [],
+  count: null
 };
 
 const organizationSlice = createSlice({
@@ -17,12 +19,36 @@ const organizationSlice = createSlice({
     },
     [getOrganizations.fulfilled]: (state, action) => {
       state.loading = false
-      state.organizations = action.payload
+      state.organizations = action.payload.results
+      state.count = action.payload.count
     },
     [getOrganizations.rejected]: (state) => {
       state.loading = false
       state.error = true
     },
+
+    [editOrganization.pending]: (state) => {
+      state.loading = true;
+    },
+    [editOrganization.fulfilled]: (state) => {
+      state.loading = false
+    },
+    [editOrganization.rejected]: (state) => {
+      state.loading = false
+      state.error = true
+    },
+
+    [createOrganization.pending]: (state) => {
+      state.loading = true;
+    },
+    [createOrganization.fulfilled]: (state) => {
+      state.loading = false
+    },
+    [createOrganization.rejected]: (state) => {
+      state.loading = false
+      state.createError = true
+    },
+
   },
 })
 

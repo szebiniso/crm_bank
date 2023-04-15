@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Input from "../../../shared/ui/Input";
 import {AtSymbolIcon, KeyIcon, CameraIcon, PhoneIcon, UserIcon} from "@heroicons/react/24/outline";
 import {useDispatch} from "react-redux";
+import PasswordInput from "../../../shared/ui/PasswordInput";
 
 const AdminForm = ({
                      name, nameChange,
@@ -68,9 +69,9 @@ const AdminForm = ({
           <PhoneIcon className="h-5 text-gray-400 px-2" />
         </Input>
 
-        <Input value={password} onChange={(e) => passwordChange(e.target.value)} type='text' placeholder='Введите пароль' name='3' label='Пароль' >
+        <PasswordInput value={password} onChange={(e) => passwordChange(e.target.value)} placeholder='Введите пароль' name='3' label='Пароль' >
           <KeyIcon className="h-5 text-gray-400 px-2" />
-        </Input>
+        </PasswordInput>
       </div>
     </div>
   );

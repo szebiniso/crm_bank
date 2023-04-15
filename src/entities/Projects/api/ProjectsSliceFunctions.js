@@ -6,7 +6,7 @@ export const getProjects = createAsyncThunk(
   "projects/getProjects",
   async function(_,{ rejectWithValue}){
     try {
-      const res = await API.get('project/');
+      const res = await API.get('project/', { params: { limit: 20, offset: 0 }});
       console.log(res)
       if (!res) {
         throw new Error("ERROR");

@@ -6,10 +6,11 @@ export const createOrganization = createAsyncThunk(
   async (data, { rejectWithValue , dispatch}) => {
     try {
       const response = await APIwithToken.post("organization/", data.values);
-      await dispatch(getOrganizations())
+      await dispatch(getOrganizations({ limit: 10, offset: 0 }))
       data.closeModal()
       return response.data;
     } catch (e) {
+      console.log("create", e.message())
       return rejectWithValue(e.response.data.message);
     }
   }
@@ -20,7 +21,7 @@ export const editOrganization = createAsyncThunk(
   async (data, { rejectWithValue, dispatch }) => {
     try {
       const response = await APIwithToken.patch(`organization/${data.values.id}/`, data.values);
-      await dispatch(getOrganizations())
+      await dispatch(getOrganizations({ limit: 10, offset: 0 }))
       data.closeModal()
       data.closeDetailsModal()
       return response.data;
@@ -32,11 +33,11 @@ export const editOrganization = createAsyncThunk(
 
 export const getOrganizations = createAsyncThunk(
   "organization/getOrganizations",
-  async (_, { rejectWithValue }) => {
+  async ({limit, offset}, { rejectWithValue }) => {
     try {
-      const response = await APIwithToken.get("organization/");
+      const response = await APIwithToken.get("organization/", { params: { limit: limit, offset: offset }});
       console.log(response.data);
-      return response.data.results;
+      return response.data;
     } catch (e) {
       return rejectWithValue(e.response.data.message);
     }

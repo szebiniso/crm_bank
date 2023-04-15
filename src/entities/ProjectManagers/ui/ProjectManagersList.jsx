@@ -1,48 +1,17 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import ProjectManagerCard from "./ProjectManagerCard";
-import {getUsers} from "../../Users/api/UsersSliceFunctions";
-import API from "../../../shared/utils/axiosConfig";
-
-// const ProjectManagersList = () => {
-//   const dispatch = useDispatch()
-//   const {users} = useSelector(store => store.users)
-//
-//
-//   useEffect(() => {
-//     !users.length && dispatch(getUsers())
-//   }, [])
-//
-//   console.log(users)
-//
-//   return (
-//     <>
-//       <div className="cards-grid overflow-y-scroll h-[73%]">
-//         {users.map(user => {
-//           return <div key={user.id} className="text-center text-gray-500 dark:text-gray-400">
-//             <ProjectManagerCard user={user}/>
-//           </div>
-//         })}
-//       </div>
-//     </>
-//   );
-// };
+import {getManagers} from "../../Users/api/UsersSliceFunctions";
 
 export default function ProjectManagersList({lessons}) {
-  const [array, setArray] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const [count, setCount] = useState(0);
   const number_pag = 10
-  useEffect(() => {
-    setArray(lessons)
-  }, []);
+
+  const dispatch = useDispatch()
+  const {managers, count} = useSelector(state => state.users)
 
   useEffect(() => {
-    API.get('users-list/', { params: { limit: number_pag, offset: currentPage } })
-      .then((result) => {
-        setArray(result.data.results)
-        setCount(result.data.count)
-      });
+    dispatch(getManagers({limit: number_pag, offset: currentPage}))
   }, [currentPage]);
 
   function decrement() {
@@ -68,7 +37,7 @@ export default function ProjectManagersList({lessons}) {
       <div>
         {
           <div className="cards-grid">
-            {array?.map(user => {
+            {managers?.map(user => {
               return <div key={user.id} className="text-center text-gray-500 dark:text-gray-400">
                 <ProjectManagerCard user={user}/>
               </div>
@@ -77,7 +46,7 @@ export default function ProjectManagersList({lessons}) {
       </div>
       {
         count > 10 && <div className='flex fixed gap-4 left-9 bottom-4 w-full justify-center items-center'>
-          <button className='text-gray-700 text-4xl' style={currentPage ? {cursor: 'pointer'} : null} disabled={currentPage === 0 ? true : false} onClick={decrement}>
+          <button className='text-gray-400 text-4xl disabled:text-gray-700' style={currentPage ? {cursor: 'pointer'} : null} disabled={currentPage === 0 ? true : false} onClick={decrement}>
             &#8592;
           </button>
           {
@@ -85,7 +54,7 @@ export default function ProjectManagersList({lessons}) {
               return <span onClick={() => handlePaginate(i)} style={currentPage === i*10 ? {color: "lightgray", fontSize: '20px', padding: '3px 14px', border: '1px solid silver'} : null} className='text-gray-300 px-3 py-1 rounded-full cursor-pointer text-center border border-gray-700'>{i+1}</span>
             })
           }
-          <button className='text-gray-700 text-4xl'  style={currentPage !== count-10 ? {cursor: 'pointer'} : null} disabled={currentPage+10 > count ? true : false} onClick={increment}>
+          <button className='text-gray-400 text-4xl disabled:text-gray-700'  style={currentPage < count-10 ? {cursor: 'pointer'} : null} disabled={currentPage > count - 10 ? true : false} onClick={increment}>
             &#8594;
           </button>
         </div>

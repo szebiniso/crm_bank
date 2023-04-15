@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../../../shared/ui/Button";
 import { useFormik } from "formik";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {createUser} from "../../Users/api/UsersSliceFunctions";
 import AdminForm from "./AdminForm";
 import OrganizationForm from "./OrganizationForm";
@@ -12,6 +12,7 @@ import {createOrganization} from "../api/OrganizationApi";
 export default function OrganizationWithAdminCreateForm({closeModal}) {
 
   const [tab, setTab] = useState('organization');
+  const {loading} = useSelector(state => state.organization)
 
   // Admin
   const [name, setName] = useState('');
@@ -98,7 +99,9 @@ export default function OrganizationWithAdminCreateForm({closeModal}) {
         password={password} passwordChange={setPassword}
       />}
       <div className='w-full flex flex-col mt-7'>
-        <Button toolExist='true' disabled={!hasNotEmptyField} type="submit" text='Создать'/>
+        {
+          loading ? <Button disabled type="button" loading='true'/> : <Button toolExist='true' disabled={!hasNotEmptyField} type="submit" text='Создать'/>
+        }
       </div>
     </form>
   );

@@ -24,6 +24,7 @@ const Iterations = () => {
       </Container>
 
       <FormModal
+        full_height='true'
         title="Создать итерацию"
         showModal={showCreateModal}
         setShowModal={handleCloseCreateModal}

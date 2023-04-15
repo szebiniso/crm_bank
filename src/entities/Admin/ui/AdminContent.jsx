@@ -1,51 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import Header from "../../../shared/ui/Header";
-import HeaderWithOptions from "../../../shared/ui/HeaderWithOptions";
 import {useDispatch, useSelector} from "react-redux";
-import ProjectManagerCard from "../../ProjectManagers/ui/ProjectManagerCard";
 import {getOrganizations} from "../../Organization/api/OrganizationApi";
 import AdminCard from "./AdminCard";
-import APIwithToken from "../../../shared/utils/axiosConfigWithToken";
-
-// const AdminContent = () => {
-//
-//   const dispatch = useDispatch()
-//
-//   useEffect(() => {
-//     dispatch(getOrganizations())
-//   }, []);
-//
-//
-//   const {loading, error, organizations} = useSelector(state => state.organization)
-//
-//   return (
-//     <>
-//       <div className="grid gap-8 lg:gap-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-//         {organizations.map(organization => {
-//           return <div key={organization.id} className="text-center text-gray-500 dark:text-gray-400">
-//             <AdminCard organization={organization}/>
-//           </div>
-//         })}
-//       </div>
-//     </>
-//   );
-// };
 
 const AdminContent = () => {
-  const [array, setArray] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const [count, setCount] = useState(0);
   const number_pag = 10
-  // useEffect(() => {
-  //   setArray(lessons)
-  // }, []);
+
+  const dispatch = useDispatch()
+
+  const {organizations, count, loading} = useSelector(state => state.organization)
 
   useEffect(() => {
-    APIwithToken.get('organization/', { params: { limit: number_pag, offset: currentPage } })
-      .then((result) => {
-        setArray(result.data.results)
-        setCount(result.data.count)
-      });
+    dispatch(getOrganizations({limit: number_pag, offset: currentPage}))
   }, [currentPage]);
 
   function decrement() {
@@ -72,7 +39,7 @@ const AdminContent = () => {
         {
           <div className="cards-grid">
             {
-              array?.map(organization => {
+              organizations?.map(organization => {
               return <div key={organization.id} className="text-center text-gray-500 dark:text-gray-400">
                 <AdminCard organization={organization}/>
               </div>
@@ -82,7 +49,7 @@ const AdminContent = () => {
       </div>
       {
         count > 10 && <div className='flex fixed gap-4 left-9 bottom-6 w-full justify-center items-center'>
-          <button className='text-gray-700 text-4xl' style={currentPage ? {cursor: 'pointer'} : null} disabled={currentPage === 0 ? true : false} onClick={decrement}>
+          <button className='text-gray-400 text-4xl disabled:text-gray-700' style={currentPage ? {cursor: 'pointer'} : null} disabled={currentPage === 0 ? true : false} onClick={decrement}>
             &#8592;
           </button>
           {
@@ -90,7 +57,7 @@ const AdminContent = () => {
               return <span onClick={() => handlePaginate(i)} style={currentPage === i*10 ? {color: "lightgray", fontSize: '20px', height: '45px', width: '45px', border: '1px solid silver'} : null} className='text-gray-300 p-2 rounded-full w-10 h-10 text-center border border-gray-700'>{i+1}</span>
             })
           }
-          <button className='text-gray-700 text-4xl'  style={currentPage !== count-10 ? {cursor: 'pointer'} : null} disabled={currentPage+10 > count ? true : false} onClick={increment}>
+          <button className='text-gray-400 text-4xl disabled:text-gray-700'  style={currentPage < count-10 ? {cursor: 'pointer'} : null} disabled={currentPage > count - 10 ? true : false} onClick={increment}>
             &#8594;
           </button>
         </div>

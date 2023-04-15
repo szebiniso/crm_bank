@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {getProjects, getUsers} from "./ProjectsSliceFunctions";
+import {createProject, getProjects} from "./ProjectsSliceFunctions";
 
 
 const initialState = {
@@ -22,6 +22,16 @@ const projectsSlice = createSlice({
       state.projects = action.payload
     },
     [getProjects.rejected]: (state) => {
+      state.loading = false
+    },
+
+    [createProject.pending]: (state) => {
+      state.loading = true;
+    },
+    [createProject.fulfilled]: (state) => {
+      state.loading = false
+    },
+    [createProject.rejected]: (state) => {
       state.loading = false
     },
   },

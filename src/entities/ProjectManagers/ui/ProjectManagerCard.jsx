@@ -5,6 +5,7 @@ import FormModal from "../../../widgets/Modals/ui/FormModal";
 import {deleteUser} from "../../Users/api/UsersSliceFunctions";
 import {useDispatch} from "react-redux";
 import ProjectManagerEditForm from "./ProjectManagerEditForm";
+import {truncateString} from "../../../shared/utils/truncateString";
 
 const ProjectManagerCard = ({user}) => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -59,7 +60,7 @@ const ProjectManagerCard = ({user}) => {
               <div className="flex min-h-full flex-col items-center justify-center">
                 <p className="text-xl font-bold">{first_name}</p>
                 <p className="text-xl font-bold">{last_name}</p>
-                <p className="text-lg ">{email}</p>
+                <p className="text-lg ">{truncateString(email, 22)}</p>
                 <p className="text-base">
                   {phone_number}
                 </p>
@@ -84,7 +85,9 @@ const ProjectManagerCard = ({user}) => {
           </div>
         </div>
       </div>
-      {showDeleteModal && <DeleteModal deleteDispatch={handleDeleteProjectManager}
+      {showDeleteModal && <DeleteModal
+          deleteDispatch={handleDeleteProjectManager}
+          text='Вы уверены, что хотите удалить данного менеджера?'
           showModal={showDeleteModal}
           setShowModal={() => setShowDeleteModal(false)}
           userId={id}

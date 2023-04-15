@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Input from "../../../shared/ui/Input";
 import {closeAuthErrorAlert} from "../api/AuthSlice";
 import Button from "../../../shared/ui/Button";
+import PasswordInput from "../../../shared/ui/PasswordInput";
 // import ReCAPTCHA from "react-google-recaptcha"
 
 const AuthForm = () => {
@@ -43,9 +44,9 @@ const AuthForm = () => {
           <Input error={formik.errors.email} touched={formik.touched.email} onChange={formik.handleChange} type='email' placeholder='Введите почту' name='email' label='Почта' >
             <AtSymbolIcon className="h-5 text-gray-400 px-2" />
           </Input>
-          <Input error={formik.errors.password} touched={formik.touched.password} onChange={formik.handleChange} type='password' placeholder='Введите пароль' name='password' label='Пароль'>
+          <PasswordInput error={formik.errors.password} touched={formik.touched.password} onChange={formik.handleChange} type='password' placeholder='Введите пароль' name='password' label='Пароль'>
             <KeyIcon className="h-5 text-gray-400 px-2" />
-          </Input>
+          </PasswordInput>
 
           {/*<ReCAPTCHA*/}
           {/*  sitekey={process.env.REACT_APP_SITE_KEY}*/}

@@ -82,7 +82,7 @@ const OrganizationDetails = ({organization, closeDetailsModal}) => {
         </div>
       </div>
 
-      {showDeleteModal && <DeleteModal
+      {showDeleteModal && <DeleteModal text='Вы уверены, что хотите удалить организацию?'
         deleteDispatch={handleDeleteOrganization}
         showModal={showDeleteModal}
         setShowModal={handleCloseDeleteModal}

@@ -1,5 +1,4 @@
 import React from 'react';
-import {KeyIcon} from "@heroicons/react/24/outline";
 
 const Input = ({label,
                     placeholder,

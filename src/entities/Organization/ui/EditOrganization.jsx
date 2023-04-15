@@ -7,7 +7,7 @@ import {
   RectangleGroupIcon
 } from "@heroicons/react/24/outline";
 import Input from "../../../shared/ui/Input";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Button from "../../../shared/ui/Button";
 import {useFormik} from "formik";
 import {editOrganization} from "../api/OrganizationApi";
@@ -18,6 +18,7 @@ const EditOrganization = ({closeModal, organization, closeDetailsModal}) => {
   const [image, setImage] = useState();
 
   const dispatch = useDispatch()
+  const {loading} = useSelector(state => state.organization)
 
   const onImageChange = (event) => {
     const file = event.target.files?.[0];
@@ -27,6 +28,8 @@ const EditOrganization = ({closeModal, organization, closeDetailsModal}) => {
       setImage(URL.createObjectURL(event.target.files?.[0]));
     }
   };
+
+
 
   const formik = useFormik({
     initialValues: organization,
@@ -82,8 +85,9 @@ const EditOrganization = ({closeModal, organization, closeDetailsModal}) => {
         <Input onChange={formik.handleChange} value={formik.values.phone_number} type='text' placeholder='Введите номер телефона' name='phone_number' label='Контакты' >
           <PhoneIcon className="h-5 text-gray-400 px-2" />
         </Input>
-
-        <Button type="submit" text='Редактировать'/>
+        {
+          loading ? <Button disabled type="button" loading='true'/> : <Button type="submit" text='Редактировать'/>
+        }
 
       </div>
     </form>

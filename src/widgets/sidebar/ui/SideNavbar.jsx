@@ -42,7 +42,7 @@ const SideNavbar = () => {
                   <NavLink to="/main/admins">
                     <SideBarIcon
                       title="Админы"
-                      icon={<SquaresPlusIcon className="w-9" />}
+                      icon={<UserGroupIcon className="w-9" />}
                     />
                   </NavLink>
                 </li>
@@ -64,7 +64,7 @@ const SideNavbar = () => {
                 <NavLink to="/main/projects">
                   <SideBarIcon
                     title="Проекты"
-                    icon={<UserGroupIcon className="w-9" />}
+                    icon={<SquaresPlusIcon className="w-9" />}
                   />
                 </NavLink>
               </li>
@@ -72,7 +72,7 @@ const SideNavbar = () => {
                 <NavLink to="/main/project_managers">
                   <SideBarIcon
                     title="Проект менеджеры"
-                    icon={<ChartBarIcon className="w-9" />}
+                    icon={<UserGroupIcon className="w-9" />}
                   />
                 </NavLink>
               </li>

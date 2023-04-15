@@ -6,7 +6,7 @@ export const getUsers = createAsyncThunk(
   "users/getUsers",
   async function(_,{ rejectWithValue}){
     try {
-      const res = await API.get('users-list/?limit=10&offset=0');
+      const res = await API.get('users-list/', { params: {limit: 10, offset: 0 }});
       if (!res) {
         throw new Error("ERROR");
       }
@@ -19,14 +19,14 @@ export const getUsers = createAsyncThunk(
 
 export const getManagers = createAsyncThunk(
   "users/getManagers",
-  async function(_,{ rejectWithValue}){
+  async function({limit, offset},{ rejectWithValue}){
     try {
-      const res = await API.get('users-list/?role=Менеджер');
+      const res = await API.get('users-list/', { params: {role: 'Менеджер', limit: limit, offset: offset }});
       console.log(res.data)
       if (!res) {
         throw new Error("ERROR");
       }
-      return res.data.results
+      return res.data
     } catch (error) {
       return rejectWithValue(error.message)
     }
@@ -52,10 +52,9 @@ export const createUser = createAsyncThunk(
   "users/createUser",
   async ({values, closeModal} ,{ rejectWithValue, dispatch }) => {
     try {
-      const res = await APIwithToken.post('register/', values);
-      console.log(res)
+      const res = await API.post('register/', values);
       await closeModal()
-      dispatch(getUsers())
+      dispatch(getManagers({limit: 10, offset: 0}))
       return res.data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -69,7 +68,7 @@ export const editUser = createAsyncThunk(
     try {
       const res = await API.put(`users-list/${values.id}/`, values);
       await closeModal()
-      dispatch(getUsers())
+      dispatch(getManagers({limit: 10, offset: 0}))
       return res.data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -83,9 +82,8 @@ export const deleteUser = createAsyncThunk(
   async ({id, handleCloseDeleteModal} ,{ rejectWithValue , dispatch}) => {
     try {
       const res = await API.delete(`users-list/${id}`);
-      console.log("res", res)
       await handleCloseDeleteModal()
-      dispatch(getUsers())
+      dispatch(getManagers({limit: 10, offset: 0}))
       if (!res) {
         throw new Error("ERROR");
       }
