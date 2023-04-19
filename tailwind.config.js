@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'auth-form-bg': "url('../src/shared/assets/bg-auth.png')",
+        'profile_img': "url('../src/shared/assets/profile_img.png')",
       },
       colors: {
         'main-blue': '#34B3F1',

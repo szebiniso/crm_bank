@@ -34,7 +34,7 @@ const AdminCard = ({organization}) => {
               <img
                 className="object-cover mx-auto mb-2 w-24 h-24 rounded-full"
                 alt="#"
-                src="https://aif-s3.aif.ru/images/019/507/eeba36a2a2d37754bab8b462f4262d97.jpg"
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80"
               />
               <h3 className="text-xl font-bold tracking-tight text-gray-300 dark:text-white">
                 {first_name} <br /> {last_name}
