@@ -3,7 +3,7 @@ import Button from "../../../shared/ui/Button";
 import { useFormik } from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import Input from "../../../shared/ui/Input";
-import {UserIcon, PencilIcon, Bars3BottomLeftIcon, ArrowTrendingUpIcon } from "@heroicons/react/24/outline";
+import {UserIcon, PencilIcon, ArrowTrendingUpIcon } from "@heroicons/react/24/outline";
 import {getManagers} from "../../Users/api/UsersSliceFunctions";
 import {createProject} from "../api/ProjectsSliceFunctions";
 import InputTextArea from "../../../shared/ui/InputTextArea";
@@ -20,7 +20,7 @@ export default function ProjectCreateForm({closeModal}) {
   }, []);
 
 
-  // console.log('admins', managers)
+  console.log('admins', managers)
   const formik = useFormik({
     initialValues: {
       manager: null,
@@ -57,7 +57,7 @@ export default function ProjectCreateForm({closeModal}) {
                 <select
                   onChange={formik.handleChange}
                   name="manager"
-                  className="w-full bg-transparent focus:ring-blue-500 border-none outline-none text-gray-300 md:p-1 lg:p-2 2xl:p-2 md:text-1 lg:text-1 xl:text-1 "
+                  className="w-full max-h-10 overflow-auto bg-transparent focus:ring-blue-500 border-none outline-none text-gray-300 md:p-1 lg:p-2 2xl:p-2 md:text-1 lg:text-1 xl:text-1 "
                 >
                   <option className='text-gray-200 bg-gray-700' value=""></option>
                   {
@@ -75,7 +75,6 @@ export default function ProjectCreateForm({closeModal}) {
           </Input>
 
           <InputTextArea name='description' onChange={formik.handleChange} placeholder="Введите описание..." label='Описание' row='3'/>
-
           <div className='border-y border-gray-500'>
             <div className="flex items-center bg-transparent w-full border-x-2 border-[#3e9db4] m-auto h-full">
               <ArrowTrendingUpIcon className="h-5 text-gray-400 px-2" />

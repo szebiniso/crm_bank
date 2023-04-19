@@ -30,7 +30,7 @@ const SideNavbar = () => {
                         bg-gray-700 text-white shadow-lg"
       >
         <div>
-          <SideBarIcon icon={<RectangleStackIcon className="w-9" />} />
+          <SideBarIcon active='true' icon={<RectangleStackIcon className="w-9" />} />
         </div>
         <br />
         <br />
@@ -39,7 +39,7 @@ const SideNavbar = () => {
           <ul>
             {is_super_admin == 'true' && <>
                 <li>
-                  <NavLink to="/main/admins">
+                  <NavLink to="/main/admins" className={({isActive} ) => isActive ? "active-sidebar-icon" : "sidebar-icon"}>
                     <SideBarIcon
                       title="Админы"
                       icon={<UserGroupIcon className="w-9" />}
@@ -47,7 +47,7 @@ const SideNavbar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/main/organizations">
+                  <NavLink to="/main/organizations" className={({isActive} ) => isActive ? "active-sidebar-icon" : "sidebar-icon"}>
                     <SideBarIcon
                       title="Организации"
                       icon={<BuildingOfficeIcon  className="w-9" />}
@@ -61,7 +61,7 @@ const SideNavbar = () => {
             {role == 'Админ' && is_super_admin == 'false' && <>
 
               <li>
-                <NavLink to="/main/projects">
+                <NavLink to="/main/projects" className={({isActive} ) => isActive ? "active-sidebar-icon" : "sidebar-icon"}>
                   <SideBarIcon
                     title="Проекты"
                     icon={<SquaresPlusIcon className="w-9" />}
@@ -69,7 +69,7 @@ const SideNavbar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/main/project_managers">
+                <NavLink to="/main/project_managers" className={({isActive} ) => isActive ? "active-sidebar-icon" : "sidebar-icon"}>
                   <SideBarIcon
                     title="Проект менеджеры"
                     icon={<UserGroupIcon className="w-9" />}
@@ -82,7 +82,7 @@ const SideNavbar = () => {
             {/*Project Manager*/}
             {role === 'Менеджер' && <>
                   <li>
-                    <NavLink to="/main/projects">
+                    <NavLink to="/main/projects" className={({isActive} ) => isActive ? "active-sidebar-icon" : 'sidebar-icon'}>
                       <SideBarIcon
                         title="Проекты"
                         icon={<SquaresPlusIcon className="w-9" />}
@@ -90,7 +90,7 @@ const SideNavbar = () => {
                     </NavLink>
                   </li>
                 <li>
-                  <NavLink to="/main/iterations">
+                  <NavLink to="/main/iterations" className={({isActive} ) => isActive ? "active-sidebar-icon" : "sidebar-icon"}>
                     <SideBarIcon
                       title="Итерации"
                       icon={<TableCellsIcon className="w-9" />}
@@ -99,7 +99,7 @@ const SideNavbar = () => {
                 </li>
               </>}
           </ul>
-          <NavLink to="/">
+          <NavLink to="/" className={({isActive} ) => isActive ? "active-sidebar-icon" : "sidebar-icon"}>
             <SideBarIcon onClick={handleLogout}
               title="Выход"
               icon={<ArrowRightOnRectangleIcon className="w-9" />}

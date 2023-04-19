@@ -16,7 +16,7 @@ const ProjectManagers = () => {
     <>
       <Container>
         <div className="mx-auto mb-8 w-full lg:mb-7">
-          <Header title='Проект менеджеры' onChange={() => setShowCreateModal(true)} isButtonExist='true'/>
+          <Header title='Менеджеры' onChange={() => setShowCreateModal(true)} isButtonExist='true'/>
           <hr className="my-4 [height:1px] border-none bg-gray-700" />
           <HeaderWithOptions />
         </div>

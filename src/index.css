@@ -18,8 +18,17 @@
         transition-all duration-100 ease-linear
         cursor-pointer;
     }
+    .active-sidebar-icon {
+        @apply relative flex items-center justify-center
+        h-12 w-12 mt-4 mb-4 mx-auto shadow-lg
+        bg-gray-800 text-gray-300
+        hover:bg-[34B3F1] hover:text-white
+        rounded-3xl hover:rounded-2xl
+        transition-all duration-100 ease-linear
+        cursor-pointer;
+    }
     .sidebar-tooltip {
-        @apply absolute w-auto p-2 m-2 min-w-max left-14
+        @apply absolute w-auto p-2 m-2 min-w-max left-14 top-0.5
         rounded-md shadow-md
         text-white bg-gray-900
         text-xs font-bold
@@ -59,8 +68,8 @@ select:-webkit-autofill {
 }
 
 ::-webkit-scrollbar {
-    width: 3px;
-    height: 3px;
+    width: 1px;
+    height: 1px;
 }
 
 ::-webkit-scrollbar-thumb:horizontal {

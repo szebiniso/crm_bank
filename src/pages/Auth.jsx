@@ -11,7 +11,8 @@ const Auth = () => {
   return (
     <div className='relative'>
       {
-        authError && <ErrorAlert error_title='Неправильно введен логин или пароль! :(' closeDispatch={() => dispatch(closeAuthErrorAlert())}/>
+        authError === 'Network Error' ? <ErrorAlert error_title='Отсутствует интернет соединение! Проверьте подключение к Wi-Fi или сотовой сети и повторите попытку.' closeDispatch={() => dispatch(closeAuthErrorAlert())}/> :
+          <ErrorAlert error_title='Неправильно введен логин или пароль!' closeDispatch={() => dispatch(closeAuthErrorAlert())}/>
       }
 
       <div className='h-screen w-screen overflow-hidden whitespace-nowrap scrollbar-hide grid grid-cols-60/40'>

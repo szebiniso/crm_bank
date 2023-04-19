@@ -2,7 +2,7 @@ import React from 'react';
 
 const ErrorAlert = ({closeDispatch, error_title, }) => {
   return (
-    <div id="alert-2" className="flex p-4 mb-4 text-red-800 absolute right-10 top-10 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+    <div id="alert-2" className="flex w-1/4 p-4 mb-4 text-red-800 absolute right-10 top-10 rounded-lg bg-[#adb5c7] dark:bg-gray-800 dark:text-red-400"
          role="alert">
       <svg aria-hidden="true" className="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
            xmlns="http://www.w3.org/2000/svg">
@@ -16,7 +16,7 @@ const ErrorAlert = ({closeDispatch, error_title, }) => {
       </div>
       <button type="button"
               onClick={closeDispatch}
-              className="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"
+              className="ml-auto -mx-1.5 -my-1.5 bg-[#adb5c7] text-red-800 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"
               data-dismiss-target="#alert-2" aria-label="Close">
         <span className="sr-only">Close</span>
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

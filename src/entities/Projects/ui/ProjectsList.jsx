@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import ProjectCard from "./ProjectCard";
 import {useDispatch, useSelector} from "react-redux";
 import {getProjects} from "../api/ProjectsSliceFunctions";
+import ProjectCardd from "./ProjectCardd";
 
 const ProjectsList = () => {
 
@@ -48,6 +49,7 @@ const ProjectsList = () => {
             </>
           })
         }
+        <ProjectCardd/>
     </div>
   );
 };

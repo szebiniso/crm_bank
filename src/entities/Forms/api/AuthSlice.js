@@ -6,7 +6,7 @@ import {AuthApi} from "./authApi";
 const initialState = {
   authLoading: false,
   authSuccess: false,
-  authError: false,
+  authError: "",
 };
 
 const authsSlice = createSlice({
@@ -28,7 +28,7 @@ const authsSlice = createSlice({
     [AuthApi.rejected]: (state, action) => {
       state.authLoading = false
       state.authSuccess = false
-      state.authError = true
+      state.authError = action.payload
     },
   },
 })

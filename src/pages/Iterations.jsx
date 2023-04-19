@@ -3,10 +3,13 @@ import HeaderWithOptions from "../shared/ui/HeaderWithOptions";
 import FormModal from "../widgets/Modals/ui/FormModal";
 import Header from "../shared/ui/Header";
 import Container from "../shared/ui/Container";
-import UserCreateForm from "../entities/ProjectManagers/ui/ProjectManagerCreateForm";
+import IterationList from "../entities/Iterations/ui/IterationList";
+import IterationCreateForm from "../entities/Iterations/ui/IterationCreateForm";
 
 const Iterations = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
+
+  const [projectId, setProjectId] = useState(13);
 
   const handleCloseCreateModal = () => {
     setShowCreateModal(false)
@@ -15,21 +18,20 @@ const Iterations = () => {
   return (
     <>
       <Container>
-        <div className="mx-auto mb-8 w-full lg:mb-12">
-          <Header title='Итерации' onChange={() => setShowCreateModal(true)} isButtonExist='true'/>
-          <hr className="my-4 [height:1px] border-none bg-gray-700" />
-          <HeaderWithOptions />
+        <div className="mx-auto mb-4 w-full lg:mb-4">
+          <Header setProjectId={setProjectId} title='Итерации' onChange={() => setShowCreateModal(true)} isButtonExist='true' iterationOptionBtn='true'/>
+          {/*<hr className="my-4 [height:1px] border-none bg-gray-700" />*/}
+          {/*<HeaderWithOptions />*/}
         </div>
-        {/*<OrganizationList/>*/}
+        <IterationList projectId={projectId}/>
       </Container>
 
       <FormModal
-        full_height='true'
         title="Создать итерацию"
         showModal={showCreateModal}
         setShowModal={handleCloseCreateModal}
       >
-        <UserCreateForm closeModal={handleCloseCreateModal}/>
+        <IterationCreateForm closeModal={handleCloseCreateModal}/>
       </FormModal>
     </>
   );

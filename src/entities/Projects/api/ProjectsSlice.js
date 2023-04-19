@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {createProject, getProjects} from "./ProjectsSliceFunctions";
+import {createProject, deleteProject, editProject, getProjects} from "./ProjectsSliceFunctions";
 
 
 const initialState = {
@@ -32,6 +32,26 @@ const projectsSlice = createSlice({
       state.loading = false
     },
     [createProject.rejected]: (state) => {
+      state.loading = false
+    },
+
+    [editProject.pending]: (state) => {
+      state.loading = true;
+    },
+    [editProject.fulfilled]: (state) => {
+      state.loading = false
+    },
+    [editProject.rejected]: (state) => {
+      state.loading = false
+    },
+
+    [deleteProject.pending]: (state) => {
+      state.loading = true;
+    },
+    [deleteProject.fulfilled]: (state) => {
+      state.loading = false
+    },
+    [deleteProject.rejected]: (state) => {
       state.loading = false
     },
   },

@@ -9,6 +9,7 @@ import Admins from "./Admins";
 import Organizations from "./Organizations";
 import ProjectManagers from "./ProjectManagers";
 import Iterations from "./Iterations";
+import ArchivedProjects from "../entities/Projects/ui/ArchivedProjects";
 
 // const TestPage = lazy(() => import("./test"));
 
@@ -23,6 +24,7 @@ const MainRouting = () => {
 
         {/*Admin*/}
         <Route path="/projects" element={<Projects />} />
+        <Route path="/archived_projects" element={<ArchivedProjects />} />
         <Route path="/project_managers" element={<ProjectManagers />} />
 
         {/*Project Manager*/}
