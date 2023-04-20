@@ -57,7 +57,7 @@ const ProjectListt = () => {
         <div className='bg-transparent w-full h-[76vh] p-1 overflow-y-scroll'>
           {
             completedProjects.map(project => {
-              return <ProjectCardd project={project}/>
+              return <ProjectCardd isCompleted='true' project={project}/>
             })
           }
         </div>
@@ -71,7 +71,7 @@ const ProjectListt = () => {
         <div className='bg-transparent w-full h-[76vh] p-1 overflow-y-scroll'>
           {
             failedProjects.map(project => {
-              return <ProjectCardd project={project}/>
+              return <ProjectCardd isFailed='true' project={project}/>
             })
           }
         </div>

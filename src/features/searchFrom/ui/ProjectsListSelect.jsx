@@ -26,7 +26,7 @@ const ProjectsListSelect = ({setProjectId}) => {
   }, []);
 
   return (
-    <div>
+    <div className='border border-[#1e3156] rounded-md'>
       <select
         onChange={(e) => handleSetProjectId(e)}
         name="project"

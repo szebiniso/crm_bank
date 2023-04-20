@@ -11,6 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Button from "../../../shared/ui/Button";
 import {useFormik} from "formik";
 import {editOrganization} from "../api/OrganizationApi";
+import InputTextArea from "../../../shared/ui/InputTextArea";
 
 const EditOrganization = ({closeModal, organization, closeDetailsModal}) => {
 
@@ -52,7 +53,7 @@ const EditOrganization = ({closeModal, organization, closeDetailsModal}) => {
           </div>
           <img
             className="absolute t-0 w-full h-full rounded-lg object-cover"
-            src={image}
+            src='https://media.istockphoto.com/id/1286680331/vector/adoption-and-community-care.jpg?s=612x612&w=0&k=20&c=ohbgHT14BhVVbVOc__N5MsBEfoM3EXwzLPxzIFeWHTI='
             alt=""
           />
         </label>
@@ -74,9 +75,7 @@ const EditOrganization = ({closeModal, organization, closeDetailsModal}) => {
           <RectangleGroupIcon className="h-5 text-gray-400 px-2" />
         </Input>
 
-        <Input onChange={formik.handleChange} value={formik.values.description} type='text' placeholder='Описание' name='description' label='Описание' >
-          <Bars3BottomLeftIcon className="h-5 text-gray-400 px-2" />
-        </Input>
+        <InputTextArea  onChange={formik.handleChange} value={formik.values.description} type='text' placeholder='Описание' name='description' label='Описание' row='2'/>
 
         <Input onChange={formik.handleChange} value={formik.values.email} type='text' placeholder='Введите почту' name='email' label='Почта' >
           <AtSymbolIcon className="h-5 text-gray-400 px-2" />

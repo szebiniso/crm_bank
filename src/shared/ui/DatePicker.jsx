@@ -26,7 +26,7 @@ const DatePicker = ({iteration}) => {
   return (
     <form className='flex justify-between items-center'>
       <p className='text-gray-400 mb-3 mt-1 flex items-center'>
-        <span className='text-[#b99a47] font-bold pr-1'>Дата:</span>
+        <span className='text-[#5ca9eb] font-bold pr-1'>Дата:</span>
         <div className="flex bg-transparent flex items-center">
           <input
             className="bg-transparent border-none w-20 p-0 pl-1 text-gray-300 rounded-md shadow-sm"

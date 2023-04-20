@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import API from '../../../shared/utils/axiosConfig'
-import APIwithToken from "../../../shared/utils/axiosConfigWithToken";
+import {getOrganizations} from "../../Organization/api/OrganizationApi";
 
 export const getUsers = createAsyncThunk(
   "users/getUsers",
@@ -72,6 +72,20 @@ export const editUser = createAsyncThunk(
       return res.data
     } catch (error) {
       return rejectWithValue(error.message)
+    }
+  }
+);
+
+export const editAdmin = createAsyncThunk(
+  "users-list/editAdmin",
+  async (data, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await API.patch(`users-list/${data.values.id}/`, data.values);
+      await dispatch(getOrganizations({limit: 10, offset: 0}))
+      data.closeModal()
+      return response.data;
+    } catch (e) {
+      return rejectWithValue(e.response.data.message);
     }
   }
 );

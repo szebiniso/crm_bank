@@ -5,7 +5,7 @@ import ProjectDetails from "./ProjectDetails";
 import {useDispatch} from "react-redux";
 import {archiveProject, unArchiveProject} from "../api/ProjectsSliceFunctions";
 
-const ProjectCardd = ({project, isInProgress}) => {
+const ProjectCardd = ({project, isInProgress, isCompleted, isFailed}) => {
 
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const {name, description} = project
@@ -39,17 +39,33 @@ const ProjectCardd = ({project, isInProgress}) => {
             {name}
           </span>
           <p className="text-gray-200 mb-2 leading-5">{description}. Издание «Проект» специализируется на сложных журналистских</p>
-          {
-            isInProgress && <>
-              <div className="flex justify-between mt-2">
-                <span className="text-[14px] font-normal text-gray-100">Прогресс</span>
-                <span className="text-sm font-normal text-gray-100">45%</span>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div className="bg-main-blue h-2 rounded-full"  style={{width: "45%"}}></div>
-              </div>
-            </>
-          }
+
+          <div className="flex justify-between mt-2">
+            <span className="text-[14px] font-normal text-gray-100">Прогресс</span>
+            <span className="text-sm font-normal text-gray-100">
+              {
+                isInProgress && '45%'
+              }
+              {
+                isCompleted && '100%'
+              }
+              {
+                isFailed && '83%'
+              }
+            </span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2">
+            {
+              isInProgress && <div className="bg-main-blue h-2 rounded-full"  style={{width: "45%"}}></div>
+            }
+            {
+             isCompleted && <div className="bg-main-blue h-2 rounded-full"  style={{width: "100%"}}></div>
+            }
+            {
+              isFailed && <div className="bg-main-blue h-2 rounded-full"  style={{width: "83%"}}></div>
+            }
+          </div>
+
         </div>
       </div>
 

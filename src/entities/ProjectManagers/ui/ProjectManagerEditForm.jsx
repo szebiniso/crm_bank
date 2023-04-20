@@ -54,7 +54,7 @@ export default function ProjectManagerEditForm({user, closeModal}) {
             </div>
             <img
               className="absolute t-0 w-full h-full rounded-lg object-cover"
-              src={image}
+              src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80'
               alt=""
             />
           </label>
