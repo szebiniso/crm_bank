@@ -28,7 +28,7 @@ const DatePicker = ({iteration}) => {
       <p className='text-gray-400 mb-3 mt-1 flex items-center'>
         <span className='text-[#5ca9eb] font-bold pr-1'>Дата:</span>
         <div className="flex bg-transparent flex items-center">
-          <input
+          <input style={editDate ? {width: '105px'} : undefined}
             className="bg-transparent border-none w-20 p-0 pl-1 text-gray-300 rounded-md shadow-sm"
             type={editDate ? "date" : "text"}
             disabled={editDate? false : true}
@@ -36,7 +36,7 @@ const DatePicker = ({iteration}) => {
             onChange={(e) => setStartDate(e.target.value)}
           />
           <MinusSmallIcon className="h-6 w-2 text-gray-300" />
-          <input
+          <input style={editDate ? {width: '105px'} : undefined}
             className="bg-transparent p-0 pl-1 w-20 text-gray-300 border-none rounded-md shadow-sm"
             type={editDate ? "date" : "text"}
             disabled={editDate? false : true}
