@@ -1,3 +1,19 @@
+
+
+## Authorization
+![Screenshot 2023-04-25 183321](https://user-images.githubusercontent.com/72644178/234277285-db9fcfad-65dc-4984-ac7f-973cb5054c1c.png)
+
+## Super Admin
+![Screenshot 2023-04-25 184707](https://user-images.githubusercontent.com/72644178/234280918-d39300ad-5767-43b2-bd5d-3048786c3168.png)
+
+## Admin
+![Screenshot 2023-04-25 185411](https://user-images.githubusercontent.com/72644178/234282677-bda153a4-31a7-4fe0-9bf1-394aa673b3c0.png)
+![Screenshot 2023-04-25 185312](https://user-images.githubusercontent.com/72644178/234282386-168c161b-6ee3-43fe-836f-72c0b3c3214e.png)
+
+## Manager
+![Screenshot 2023-04-25 185012](https://user-images.githubusercontent.com/72644178/234281750-3d103076-cd4b-4842-97a2-7f5cca3a23d6.png)
+
+
 # Getting Started with Create React App and Redux
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
