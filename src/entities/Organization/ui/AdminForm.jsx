@@ -11,19 +11,17 @@ const AdminForm = ({
                      phone, phoneChange,
                      password, passwordChange,
                      image, imageChange,
-                     formik,
+                      imageObj, setImageObj
 }) => {
-
-  const [imgFile, setImg] = useState();
 
   const dispatch = useDispatch()
 
   const onImageChange = (event) => {
     const file = event.target.files?.[0];
-    setImg(file);
+    imageChange(file);
 
     if (event.target.files?.[0]) {
-      imageChange(URL.createObjectURL(event.target.files?.[0]));
+      setImageObj(URL.createObjectURL(event.target.files?.[0]));
     }
   };
 
@@ -39,7 +37,7 @@ const AdminForm = ({
           </div>
           <img
             className="absolute t-0 w-full h-full rounded-lg object-cover"
-            src={image}
+            src={imageObj}
             alt=""
           />
         </label>
@@ -65,11 +63,11 @@ const AdminForm = ({
           <AtSymbolIcon className="h-5 text-gray-400 px-2" />
         </Input>
 
-        <Input value={phone} onChange={(e) => phoneChange(e.target.value)} type='text' placeholder='Введите номер' name='3' label='Контакты' >
+        <Input value={phone} onChange={(e) => phoneChange(e.target.value)} type='number' placeholder='Введите номер' name='6' label='Контакты' >
           <PhoneIcon className="h-5 text-gray-400 px-2" />
         </Input>
 
-        <PasswordInput value={password} onChange={(e) => passwordChange(e.target.value)} placeholder='Введите пароль' name='3' label='Пароль' >
+        <PasswordInput value={password} onChange={(e) => passwordChange(e.target.value)} placeholder='Введите пароль' name='7' label='Пароль' >
           <KeyIcon className="h-5 text-gray-400 px-2" />
         </PasswordInput>
       </div>

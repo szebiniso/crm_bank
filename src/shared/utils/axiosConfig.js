@@ -8,7 +8,8 @@ const API = axios.create({
   // withCredentials: true,
   headers: {
     // Authorization: `Bearer ${token}`,
-    "Content-Type": "application/json",
+    // "Content-Type": "application/json",
+    "Content-Type": "multipart/form-data",
   },
 });
 

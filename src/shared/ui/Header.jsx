@@ -2,18 +2,14 @@ import React from 'react';
 import CreateButton from "./CreateButton";
 import CreateButtonWithIcon from "./CreateButtonWithIcon";
 import {ArchiveBoxIcon, RectangleGroupIcon, SquaresPlusIcon} from "@heroicons/react/24/outline";
-import ProjectsListSelect from "../../features/searchFrom/ui/ProjectsListSelect";
 
-const Header = ({onChange, isButtonExist, title, isManagerProjects, iterationOptionBtn, setProjectId, isAdminProjects, isManagerProjectsArchive, isAdminProjectsArchived, navigateToArchiveAdmin, navigateToActiveAdmin}) => {
+const Header = ({onChange, isButtonExist, title, isManagerProjects, isAdminProjects, isManagerProjectsArchive, isAdminProjectsArchived, navigateToArchiveAdmin, navigateToActiveAdmin}) => {
   return (
     <div className="flex h-12 justify-between items-center mx-4">
       <div className='flex gap-8'>
         <h2 className="mb-2 ml-2 text-3xl tracking-tight font-extrabold text-gray-300 dark:text-white">
           {title}
         </h2>
-        {
-          iterationOptionBtn && <ProjectsListSelect setProjectId={setProjectId}/>
-        }
       </div>
 
       {

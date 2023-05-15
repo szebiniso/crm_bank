@@ -6,6 +6,7 @@ import EditOrganization from "./EditOrganization";
 import {useDispatch} from "react-redux";
 import {deleteOrganization, deleteOrganizations} from "../api/OrganizationApi";
 import {AtSymbolIcon, PhoneIcon} from "@heroicons/react/24/outline";
+import {setFile} from "../../../shared/utils/setFile";
 
 const OrganizationDetails = ({organization, closeDetailsModal}) => {
 
@@ -38,13 +39,13 @@ const OrganizationDetails = ({organization, closeDetailsModal}) => {
     dispatch(deleteOrganization(data))
   }
 
-  const {id, name, field, description, email, phone_number} = organization
+  const {id, photo, name, field, description, email, phone_number} = organization
 
   return (
     <>
       <div className='flex flex-col justify-center items-center'>
         <div className='flex items-center w-full gap-6'>
-          <img className="object-cover w-20 h-20 rounded-full" src="https://media.istockphoto.com/id/1286680331/vector/adoption-and-community-care.jpg?s=612x612&w=0&k=20&c=ohbgHT14BhVVbVOc__N5MsBEfoM3EXwzLPxzIFeWHTI=" alt="Neil image"/>
+          <img className="object-cover w-20 h-20 rounded-full" src={setFile(photo)} alt="Neil image"/>
           <div className='flex flex-col gap-1'>
             <h3 className='text-xl font-bold text-gray-300'>{name} компании</h3>
             <p className='text-md text-gray-300'>{field}</p>

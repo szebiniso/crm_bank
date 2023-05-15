@@ -1,11 +1,14 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getIterations} from "./IterationApi";
+import {getAllTasks, getIterationById, getIterations, getTasks} from "./IterationApi";
 
 const initialState = {
   loading: false,
   error: false,
   createError: false,
   iterations: [],
+  iterationById: {},
+  tasks: [],
+  allTasks: [],
   count: null
 };
 
@@ -26,16 +29,41 @@ const iterationSlice = createSlice({
       state.error = true
     },
 
-    // [editIteration.pending]: (state) => {
-    //   state.loading = true;
-    // },
-    // [editIteration.fulfilled]: (state) => {
-    //   state.loading = false
-    // },
-    // [editIteration.rejected]: (state) => {
-    //   state.loading = false
-    //   state.error = true
-    // },
+    [getIterationById.pending]: (state) => {
+      state.loading = true;
+    },
+    [getIterationById.fulfilled]: (state, action) => {
+      state.loading = false
+      state.iterationById = action.payload
+    },
+    [getIterationById.rejected]: (state) => {
+      state.loading = false
+      state.error = true
+    },
+
+    [getTasks.pending]: (state) => {
+      state.loading = true;
+    },
+    [getTasks.fulfilled]: (state, action) => {
+      state.loading = false
+      state.tasks = action.payload
+    },
+    [getTasks.rejected]: (state) => {
+      state.loading = false
+      state.error = true
+    },
+
+    [getAllTasks.pending]: (state) => {
+      state.loading = true;
+    },
+    [getAllTasks.fulfilled]: (state, action) => {
+      state.loading = false
+      state.allTasks = action.payload
+    },
+    [getAllTasks.rejected]: (state) => {
+      state.loading = false
+      state.error = true
+    },
     //
     // [createIteration.pending]: (state) => {
     //   state.loading = true;

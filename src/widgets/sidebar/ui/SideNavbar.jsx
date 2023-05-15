@@ -89,15 +89,16 @@ const SideNavbar = () => {
                       />
                     </NavLink>
                   </li>
-                <li>
-                  <NavLink to="/main/iterations" className={({isActive} ) => isActive ? "active-sidebar-icon" : "sidebar-icon"}>
-                    <SideBarIcon
-                      title="Итерации"
-                      icon={<TableCellsIcon className="w-9" />}
-                    />
-                  </NavLink>
-                </li>
-              </>}
+                {/*<li>*/}
+                {/*  <NavLink to="/main/iterations" className={({isActive} ) => isActive ? "active-sidebar-icon" : "sidebar-icon"}>*/}
+                {/*    <SideBarIcon*/}
+                {/*      title="Итерации"*/}
+                {/*      icon={<TableCellsIcon className="w-9" />}*/}
+                {/*    />*/}
+                {/*  </NavLink>*/}
+                {/*</li>*/}
+              </>
+          }
           </ul>
           <NavLink to="/" className={({isActive} ) => isActive ? "active-sidebar-icon" : "sidebar-icon"}>
             <SideBarIcon onClick={handleLogout}

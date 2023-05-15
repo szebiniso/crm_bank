@@ -1,11 +1,12 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import APIwithToken from "../../../shared/utils/axiosConfigWithToken";
+import API from "../../../shared/utils/axiosConfig";
 
 export const createOrganization = createAsyncThunk(
   "organization/createOrganization",
   async (data, { rejectWithValue , dispatch}) => {
     try {
-      const response = await APIwithToken.post("organization/", data.values);
+      const response = await APIwithToken.post("organization/", data.fData);
       await dispatch(getOrganizations({ limit: 10, offset: 0 }))
       data.closeModal()
       return response.data;
@@ -49,7 +50,7 @@ export const deleteOrganization = createAsyncThunk(
   async (data, { rejectWithValue, dispatch }) => {
     try {
       const response = await APIwithToken.delete(`organization/${data.id}`);
-      await dispatch(getOrganizations())
+      await dispatch(getOrganizations({offset: 0, limit: 12}))
       data.handleCloseDeleteModal()
       console.log(response.data);
       return response.data;

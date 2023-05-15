@@ -12,11 +12,12 @@ import Button from "../../../shared/ui/Button";
 import {useFormik} from "formik";
 import {editOrganization} from "../api/OrganizationApi";
 import InputTextArea from "../../../shared/ui/InputTextArea";
+import {setFile} from "../../../shared/utils/setFile";
 
 const EditOrganization = ({closeModal, organization, closeDetailsModal}) => {
 
   const [imgFile, setImg] = useState();
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(organization.photo);
 
   const dispatch = useDispatch()
   const {loading} = useSelector(state => state.organization)
@@ -53,7 +54,7 @@ const EditOrganization = ({closeModal, organization, closeDetailsModal}) => {
           </div>
           <img
             className="absolute t-0 w-full h-full rounded-lg object-cover"
-            src='https://media.istockphoto.com/id/1286680331/vector/adoption-and-community-care.jpg?s=612x612&w=0&k=20&c=ohbgHT14BhVVbVOc__N5MsBEfoM3EXwzLPxzIFeWHTI='
+            src={setFile(image)}
             alt=""
           />
         </label>

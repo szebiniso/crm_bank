@@ -21,6 +21,7 @@ export default function OrganizationWithAdminCreateForm({closeModal}) {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [image, setImage] = useState();
+  const [imageObj, setImageObj] = useState();
 
 
   // Organization
@@ -30,31 +31,33 @@ export default function OrganizationWithAdminCreateForm({closeModal}) {
   const [orgEmail, setOrgEmail] = useState('');
   const [orgPhone, setOrgPhone] = useState('');
   const [orgImage, setOrgImage] = useState();
+  const [orgImageObj, setOrgImageObj] = useState();
+
+  console.log('imgg', orgImage)
 
   const hasNotEmptyField = name && surname && email && phone && password && title && type && description && orgEmail && orgPhone
 
   const dispatch = useDispatch()
 
   const formik = useFormik({
-    initialValues: {
-      name: title,
-      field: type,
-      description: description,
-      email: orgEmail,
-      phone_number: orgPhone,
-      admin: {
-        first_name: name,
-        last_name: surname,
-        phone_number: phone,
-        email: email,
-        password: password,
-        // role: 'Менеджер'
-      }
-    },
     enableReinitialize: true,
-    onSubmit: (values) => {
-      console.log(values);
-      const data = {values, closeModal}
+    onSubmit: () => {
+      const fData = new FormData();
+      // organization
+      fData.append("photo", orgImage);
+      fData.append("name", title);
+      fData.append("description", description);
+      fData.append("field", type);
+      fData.append("email", orgEmail);
+      fData.append("phone_number", orgPhone);
+      // admin
+      fData.append("admin.photo", image);
+      fData.append("admin.first_name", name);
+      fData.append("admin.phone_number", phone);
+      fData.append("admin.last_name", surname);
+      fData.append("admin.email", email);
+      fData.append("admin.password", password);
+      const data = {fData, closeModal}
       dispatch(createOrganization(data))
     },
   })
@@ -82,16 +85,16 @@ export default function OrganizationWithAdminCreateForm({closeModal}) {
         </ul>
       </div>
       {tab === 'organization' ? <OrganizationForm
-        formik={formik}
         orgImage={orgImage} orgImageChange={setOrgImage}
+        orgImageObj={orgImageObj} setOrgImageObj={setOrgImageObj}
         title={title} titleChange={setTitle}
         type={type} typeChange={setType}
         description={description} descriptionChange={setDescription}
         orgEmail={orgEmail} orgEmailChange={setOrgEmail}
         orgPhone={orgPhone} orgPhoneChange={setOrgPhone}
       /> : <AdminForm
-        formik={formik}
         image={image} imageChange={setImage}
+        imageObj={imageObj} setImageObj={setImageObj}
         name={name} nameChange={setName}
         surname={surname} surnameChange={setSurname}
         email={email} emailChange={setEmail}

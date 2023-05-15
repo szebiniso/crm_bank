@@ -12,6 +12,7 @@ import {
   PhoneIcon,
   RectangleGroupIcon, UserIcon
 } from "@heroicons/react/24/outline";
+import {setFile} from "../../../shared/utils/setFile";
 
 export default function ProjectManagerEditForm({user, closeModal}) {
   const [img, setImg] = useState();
@@ -54,7 +55,7 @@ export default function ProjectManagerEditForm({user, closeModal}) {
             </div>
             <img
               className="absolute t-0 w-full h-full rounded-lg object-cover"
-              src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80'
+              src={formik.values.photo && setFile(formik.values.photo)}
               alt=""
             />
           </label>

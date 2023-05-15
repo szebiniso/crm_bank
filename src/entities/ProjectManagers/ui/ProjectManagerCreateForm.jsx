@@ -9,7 +9,7 @@ import {createUser} from "../../Users/api/UsersSliceFunctions";
 import PasswordInput from "../../../shared/ui/PasswordInput";
 
 export default function ProjectManagerCreateForm({closeModal}) {
-  const [imgFile, setImg] = useState();
+  const [img, setImg] = useState();
   const [image, setImage] = useState();
 
   const dispatch = useDispatch()
@@ -35,8 +35,16 @@ export default function ProjectManagerCreateForm({closeModal}) {
     },
     enableReinitialize: true,
     onSubmit: (values) => {
-      console.log(values);
-      const data = {values, closeModal}
+      const fData = new FormData();
+      fData.append("photo", img);
+      fData.append("first_name", values.first_name);
+      fData.append("last_name", values.last_name);
+      fData.append("phone_number", values.phone_number);
+      fData.append("email", values.email);
+      fData.append("role", values.role);
+      fData.append("password", values.password);
+
+      const data = {fData, closeModal}
       dispatch(createUser(data))
     },
   });

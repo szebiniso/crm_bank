@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {getOrganizations} from "../../Organization/api/OrganizationApi";
 import AdminCard from "./AdminCard";
+import {getAdmins} from "../../Users/api/UsersSliceFunctions";
 
 const AdminContent = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -9,10 +10,10 @@ const AdminContent = () => {
 
   const dispatch = useDispatch()
 
-  const {organizations, count, loading} = useSelector(state => state.organization)
+  const {admins, count, loading} = useSelector(state => state.users)
 
   useEffect(() => {
-    dispatch(getOrganizations({limit: number_pag, offset: currentPage}))
+    dispatch(getAdmins({limit: number_pag, offset: currentPage}))
   }, [currentPage]);
 
   function decrement() {
@@ -39,9 +40,9 @@ const AdminContent = () => {
         {
           <div className="cards-grid">
             {
-              organizations?.map(organization => {
-              return <div key={organization.id} className="text-center text-gray-500 dark:text-gray-400">
-                <AdminCard organization={organization}/>
+              admins?.map(admin => {
+              return <div key={admin.id} className="text-center text-gray-500 dark:text-gray-400">
+                <AdminCard admin={admin}/>
               </div>
             })}
           </div>

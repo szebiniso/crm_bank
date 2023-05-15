@@ -41,11 +41,11 @@ const ProjectsList = () => {
           data.map((el, i) => {
             return <>
               <h2 className='mt-5 ml-2 text-md font-semibold text-gray-300 dark:text-gray-300'>{el.name}</h2>
-                <div className='p-2 flex gap-2 overflow-x-scroll'>
-                  {el.items.map((item, index) => {
-                    return <ProjectCard title={item.name}/>
-                  })}
-                </div>
+              <div className='p-2 flex gap-2 overflow-x-scroll'>
+                {el.items.map((item, index) => {
+                  return <ProjectCard title={item.name}/>
+                })}
+              </div>
             </>
           })
         }

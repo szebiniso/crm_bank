@@ -12,7 +12,7 @@ import Button from "../../../shared/ui/Button";
 import {useFormik} from "formik";
 import {editAdmin} from "../../Users/api/UsersSliceFunctions";
 
-const EditAdmin = ({closeModal, organization}) => {
+const EditAdmin = ({closeModal, admin}) => {
 
   const [imgFile, setImg] = useState();
   const [image, setImage] = useState();
@@ -28,8 +28,6 @@ const EditAdmin = ({closeModal, organization}) => {
       setImage(URL.createObjectURL(event.target.files?.[0]));
     }
   };
-
-  const admin = organization.admin_data
 
   const formik = useFormik({
     initialValues: admin,

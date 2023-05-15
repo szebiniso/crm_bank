@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {createUser, editAdmin, editUser, getManagers, getUserById, getUsers} from "./UsersSliceFunctions";
+import {createUser, editAdmin, editUser, getAdmins, getManagers, getUserById, getUsers} from "./UsersSliceFunctions";
 
 
 const initialState = {
   users: [],
   userById:{},
   managers: [],
+  admins: [],
   count: null,
   error:{},
   loading: false
@@ -67,6 +68,18 @@ const usersSlice = createSlice({
       state.count = action.payload.count
     },
     [getManagers.rejected]: (state) => {
+      state.loading = false
+    },
+
+    [getAdmins.pending]: (state) => {
+      state.loading = true;
+    },
+    [getAdmins.fulfilled]: (state, action) => {
+      state.loading = false
+      state.admins = action.payload.results
+      state.count = action.payload.count
+    },
+    [getAdmins.rejected]: (state) => {
       state.loading = false
     },
 

@@ -17,12 +17,28 @@ export const getProjects = createAsyncThunk(
   }
 );
 
+export const getProjectById = createAsyncThunk(
+  "projects/getProjectById",
+  async (id,{ rejectWithValue}) => {
+    try {
+      const res = await API.get(`project/${id}/`);
+      console.log(res)
+      if (!res) {
+        throw new Error("ERROR");
+      }
+      return res.data
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+);
+
 
 export const createProject = createAsyncThunk(
   "projects/createProject",
-  async ({values, closeModal} ,{ rejectWithValue, dispatch }) => {
+  async ({fData, closeModal} ,{ rejectWithValue, dispatch }) => {
     try {
-      const res = await API.post('project/', values);
+      const res = await API.post('project/', fData);
       console.log(res)
       await closeModal()
       dispatch(getProjects())

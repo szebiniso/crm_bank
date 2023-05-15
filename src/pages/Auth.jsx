@@ -14,7 +14,6 @@ const Auth = () => {
         authError === 'Network Error' ? <ErrorAlert error_title='Отсутствует интернет соединение! Проверьте подключение к Wi-Fi или сотовой сети и повторите попытку.' closeDispatch={() => dispatch(closeAuthErrorAlert())}/> :
           <ErrorAlert error_title='Неправильно введен логин или пароль!' closeDispatch={() => dispatch(closeAuthErrorAlert())}/>
       }
-
       <div className='h-screen w-screen overflow-hidden whitespace-nowrap scrollbar-hide grid grid-cols-60/40'>
         <div className='bg-[#3b3d4c] text-center flex items-center justify-center'>
           <img className='w-[95%] h-screen mt-6' src='https://www.theconstructsim.com/wp-content/uploads/2020/05/Individuals-TCS-2020-1.png'/>

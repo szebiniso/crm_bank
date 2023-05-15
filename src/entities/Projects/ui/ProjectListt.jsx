@@ -16,7 +16,7 @@ const ProjectListt = () => {
 
   const {projects} = useSelector(state => state.projects)
 
-  const NotArchivedProjects = projects.filter(project => !project.is_archived && project.manager == userId)
+  const NotArchivedProjects = projects.filter(project => !project.is_archived && project.manager.id == userId)
   const NotArchivedAdminProjects = projects.filter(project => !project.is_archived)
   console.log('kdslslf', NotArchivedProjects)
   let activeProjects = [], completedProjects = [], failedProjects = []
@@ -30,14 +30,13 @@ const ProjectListt = () => {
     failedProjects =  NotArchivedAdminProjects.filter(i => i.status == 'Failed')
   }
 
-
-
+  console.log('projectss:', projects)
 
   return (
     <div className='flex w-full h-[87vh] gap-4'>
       <div className='w-full p-4'>
         <div className='bg-[#1d2536] rounded-lg m-1 mb-2 mx-1 border border-[#28364c] flex items-center'>
-          <span className="flex w-3 h-3 bg-blue-500 rounded-full ml-4"></span>
+          <span className="flex w-3 h-3 bg-[#218b4c] rounded-full ml-4"></span>
           <p className="text-gray-300 text-md font-bold p-2 overflow-y-hidden">В процессе</p>
         </div>
         <div className='bg-transparent w-full h-[76vh] p-1 overflow-y-scroll'>
@@ -51,7 +50,7 @@ const ProjectListt = () => {
 
       <div className='w-full p-4'>
         <div className='bg-[#1d2536] rounded-lg m-1 mb-2 mx-1 border border-[#28364c] flex items-center'>
-          <span className="flex w-3 h-3 bg-yellow-600 rounded-full ml-4"></span>
+          <span className="flex w-3 h-3 bg-[#2367a3] rounded-full ml-4"></span>
           <p className="text-gray-300 text-md font-bold p-2 overflow-y-hidden">Завершенные</p>
         </div>
         <div className='bg-transparent w-full h-[76vh] p-1 overflow-y-scroll'>

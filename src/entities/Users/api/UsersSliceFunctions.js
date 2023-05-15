@@ -33,6 +33,22 @@ export const getManagers = createAsyncThunk(
   }
 );
 
+export const getAdmins = createAsyncThunk(
+  "users/getAdmins",
+  async function({limit, offset},{ rejectWithValue}){
+    try {
+      const res = await API.get('users-list/', { params: {role: 'Админ', limit: limit, offset: offset }});
+      console.log(res.data)
+      if (!res) {
+        throw new Error("ERROR");
+      }
+      return res.data
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+);
+
 export const getUserById = createAsyncThunk(
   "users/getUserById",
   async function(id,{ rejectWithValue}){
@@ -50,9 +66,9 @@ export const getUserById = createAsyncThunk(
 
 export const createUser = createAsyncThunk(
   "users/createUser",
-  async ({values, closeModal} ,{ rejectWithValue, dispatch }) => {
+  async ({fData, closeModal} ,{ rejectWithValue, dispatch }) => {
     try {
-      const res = await API.post('register/', values);
+      const res = await API.post('register/', fData);
       await closeModal()
       dispatch(getManagers({limit: 10, offset: 0}))
       return res.data
@@ -81,7 +97,7 @@ export const editAdmin = createAsyncThunk(
   async (data, { rejectWithValue, dispatch }) => {
     try {
       const response = await API.patch(`users-list/${data.values.id}/`, data.values);
-      await dispatch(getOrganizations({limit: 10, offset: 0}))
+      await dispatch(getAdmins({limit: 10, offset: 0}))
       data.closeModal()
       return response.data;
     } catch (e) {

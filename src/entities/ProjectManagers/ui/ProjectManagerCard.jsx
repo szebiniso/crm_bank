@@ -6,6 +6,7 @@ import {deleteUser} from "../../Users/api/UsersSliceFunctions";
 import {useDispatch} from "react-redux";
 import ProjectManagerEditForm from "./ProjectManagerEditForm";
 import {truncateString} from "../../../shared/utils/truncateString";
+import {setFile} from "../../../shared/utils/setFile";
 
 const ProjectManagerCard = ({user}) => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -14,7 +15,7 @@ const ProjectManagerCard = ({user}) => {
 
   const dispatch = useDispatch()
 
-  const {id, first_name, last_name, email, phone_number} = user
+  const {id, photo, first_name, last_name, email, phone_number} = user
 
 
   const handleOpenDeleteModal = (id) => {
@@ -50,7 +51,7 @@ const ProjectManagerCard = ({user}) => {
               <img
                 className="object-cover mx-auto mb-2 w-24 h-24 rounded-full"
                 alt="#"
-                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80"
+                src={photo && setFile(photo)}
                 // src='../../../shared/assets/profile_img.jpg'
               />
               <h3 className="text-xl font-bold tracking-tight text-gray-400 dark:text-white">

@@ -12,19 +12,17 @@ const OrganizationForm = ({
                             orgEmail, orgEmailChange,
                             orgPhone, orgPhoneChange,
                             orgImage, orgImageChange,
-                            formik
+                            orgImageObj, setOrgImageObj
 }) => {
-
-  const [imgFile, setImg] = useState();
 
   const dispatch = useDispatch()
 
   const onImageChange = (event) => {
     const file = event.target.files?.[0];
-    setImg(file);
+    orgImageChange(file);
 
     if (event.target.files?.[0]) {
-      orgImageChange(URL.createObjectURL(event.target.files?.[0]));
+      setOrgImageObj(URL.createObjectURL(event.target.files?.[0]));
     }
   };
 
@@ -40,7 +38,7 @@ const OrganizationForm = ({
           </div>
           <img
             className="absolute t-0 w-full h-full rounded-lg object-cover"
-            src={orgImage}
+            src={orgImageObj}
             alt=""
           />
         </label>

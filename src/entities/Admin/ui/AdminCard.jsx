@@ -3,13 +3,14 @@ import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import DeleteModal from "../../../widgets/Modals/ui/DeleteModal";
 import FormModal from "../../../widgets/Modals/ui/FormModal";
 import EditAdmin from "./EditAdmin";
+import {setFile} from "../../../shared/utils/setFile";
 
-const AdminCard = ({organization}) => {
+const AdminCard = ({admin}) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [userId, setUserId] = useState(77);
 
-  const {id, first_name, last_name, email, phone_number} = organization.admin_data
+  const {id, photo, first_name, last_name, email, phone_number} = admin
 
   const handleOpenDeleteModal = (id) => {
     setUserId(id)
@@ -34,7 +35,7 @@ const AdminCard = ({organization}) => {
               <img
                 className="object-cover mx-auto mb-2 w-24 h-24 rounded-full"
                 alt="#"
-                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80"
+                src={photo && setFile(photo)}
               />
               <h3 className="text-xl font-bold tracking-tight text-gray-300 dark:text-white">
                 {first_name} <br /> {last_name}
@@ -80,7 +81,7 @@ const AdminCard = ({organization}) => {
           showModal={showEditModal}
           setShowModal={handleCloseEditModal}
       >
-        <EditAdmin organization={organization} userId={id} closeModal={handleCloseEditModal}/>
+        <EditAdmin admin={admin} userId={id} closeModal={handleCloseEditModal}/>
       </FormModal>}
     </>
   );
