@@ -32,10 +32,10 @@ const ProjectDetailsPage = () => {
 
   return (
     <>
-      <div className="mx-auto mb-4 w-full lg:mb-4">
+      <div className="mx-7 mb-4 w-full lg:mb-4">
       <Header title={projectById.name}/>
     </div>
-      <div className='mx-6'>
+      <div className='mx-12'>
         <p className='text-gray-300 text-xl mb-3 leading-6'>{projectById.description}. Большая база качественных авторских фотографий и изображений. Гарантия уникальности фотоконтента от сервиса eTXT. Десятки тематических категорий, удобный поиск по ключевым словам и покупка в один клик. Сделайте свой контент на сайте полностью уникальным. Текст — это законченное высказывание в виде нескольких предложений или абзацев, связанных общей темой и основной мыслью грамматически. Текст — это законченное высказывание в виде нескольких предложений или абзацев, связанных общей темой и основной мыслью грамматически.</p>
         <p className='text-gray-300 text-xl mb-3 leading-5'>Дата:  <span className='font-bold'>  {projectById.start_date} - {projectById.end_date}</span></p>
         <p className='text-gray-300 text-xl mb-3 leading-5'>Бюджет: <span className='font-bold'>{projectById.budget}$</span></p>

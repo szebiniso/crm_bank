@@ -6,7 +6,7 @@ const Donut = ({percent, iterations, numberOfCompleted}) => {
     width: '200px',
     height: '200px',
     display: 'inline-block',
-    marginLeft: '80px'
+    marginLeft: '60px'
   };
 
   return (
