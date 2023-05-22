@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {PaperAirplaneIcon} from "@heroicons/react/20/solid";
+import {CheckIcon, PaperAirplaneIcon} from "@heroicons/react/20/solid";
 import {PencilSquareIcon, TrashIcon} from "@heroicons/react/24/outline";
 import {deleteTask, editTaskApi} from "../../entities/Iterations/api/IterationApi";
 import {useParams} from "react-router-dom";
@@ -85,7 +85,7 @@ const Task = ({iteration_id, task, iterationById}) => {
         {
           role === "Менеджер" && <div className='flex items-center gap-2'>
             {
-              task.id === editTaskId && editTask ? <button type='submit' className="h-6 w-6 text-blue-500 cursor-pointer" >send</button> : <>
+              task.id === editTaskId && editTask ? <button type='submit' className="h-6 w-6 text-blue-500 cursor-pointer" ><CheckIcon className="h-6 w-6 text-blue-400" /></button> : <>
                 <PencilSquareIcon onClick={() => handleEditTaskInput(task.id)} className="h-5 w-5 text-gray-300 cursor-pointer" />
                 <TrashIcon onClick={() => handleDeleteTask(task.id)} className="h-5 w-5 text-red-500 cursor-pointer" />
               </>
