@@ -47,10 +47,11 @@ export const deleteIteration = createAsyncThunk(
 
 export const completeIteration = createAsyncThunk(
   "iterations/completeIteration",
-  async ({iteration_id, project_id}, { rejectWithValue, dispatch }) => {
+  async ({iteration_id, project_id, handleCloseCompleteIterationModal}, { rejectWithValue, dispatch }) => {
     try {
       const response = await API.patch(`iteration/${iteration_id}/`, {is_completed: true});
       await dispatch(getIterations(project_id))
+      handleCloseCompleteIterationModal()
       return response.data;
     } catch (e) {
       return rejectWithValue(e.response.data.message);

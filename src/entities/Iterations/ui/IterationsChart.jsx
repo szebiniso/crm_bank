@@ -1,49 +1,44 @@
-import React, { Component } from "react";
+import React from "react";
 import Chart from "react-apexcharts";
 
-class IterationsChart extends Component {
-  constructor(props) {
-    super(props);
+const IterationsChart = ({iterations}) => {
 
-    this.state = {
-      options: {
-        chart: {
-          id: "basic-bar"
-        },
-        xaxis: {
-          categories: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-        },
-        markers: {
-          size: 3,
-          strokeColors: 'lightblue',
-        },
-        dataLabels: {
-          enabled: false
-        },
+  const state = {
+    options: {
+      chart: {
+        id: "basic-bar"
       },
-      series: [
-        {
-          name: "Итерация",
-          data: [30, 40, 45, 65, 60, 70, 85, 91],
-        }
-      ],
-      stroke: {
-        curve: 'smooth',
+      xaxis: {
+        categories: iterations.map(iteration => iteration.name)
+      },
+      markers: {
+        size: 3,
+        strokeColors: 'lightblue',
+      },
+      dataLabels: {
+        enabled: false
+      },
+    },
+    series: [
+      {
+        name: "Количество выполнных целей",
+        data: [30, 40, 45, 65, 60],
       }
-    };
-  }
+    ],
+    stroke: {
+      curve: 'smooth',
+    }
+};
 
-  render() {
     return (
       <Chart
-        options={this.state.options}
-        series={this.state.series}
+        options={state.options}
+        series={state.series}
         type="area"
         width="850"
         height='250'
       />
     );
   }
-}
 
 export default IterationsChart;

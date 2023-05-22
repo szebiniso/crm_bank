@@ -63,6 +63,20 @@ export const editProject = createAsyncThunk(
   }
 );
 
+export const addFilesToProject = createAsyncThunk(
+  "projects/addFilesToProject",
+  async ({project_id, values, closeModal} ,{ rejectWithValue, dispatch }) => {
+    try {
+      const res = await API.patch(`project/${project_id}/`, values);
+      await closeModal()
+      dispatch(getProjects())
+      return res.data
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+);
+
 export const archiveProject = createAsyncThunk(
   "projects/archiveProject",
   async (id ,{ rejectWithValue, dispatch }) => {

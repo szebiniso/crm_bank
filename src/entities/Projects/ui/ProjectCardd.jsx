@@ -36,7 +36,7 @@ const ProjectCardd = ({project, isInProgress, isCompleted, isFailed}) => {
           pathname === '/main/archived_projects' ? <ArchiveBoxXMarkIcon onClick={() => handleUnArchiveProject(project.id)} className="h-6 w-6 cursor-pointer hover:scale-125 hover:text-gray-300 text-gray-400 absolute z-10 right-4 top-4" /> :
             <ArchiveBoxArrowDownIcon onClick={() => handleArchiveProject(project.id)} className="h-6 w-6 cursor-pointer hover:scale-125 hover:text-gray-300 text-gray-400 absolute z-10 right-4 top-4" />
       }
-        <div onClick={() => navigate(`/main/projects/${project.id}`)} className='w-68 bg-[#262f40] rounded-xl p-4 px-.5 flex flex-col gap-2 mb-2 cursor-pointer'>
+        <div onClick={() => navigate(`/projects/${project.id}`)} className='w-68 bg-[#262f40] rounded-xl p-4 px-.5 flex flex-col gap-2 mb-2 cursor-pointer'>
           <span className="text-gray-50 text-xl font-bold mr-2">
             {name}
           </span>

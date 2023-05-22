@@ -3,10 +3,10 @@ import { Circle } from 'rc-progress';
 
 const Donut = ({percent, iterations, numberOfCompleted}) => {
   const circleContainerStyle = {
-    width: '200px',
-    height: '200px',
+    width: '220px',
+    height: '220px',
     display: 'inline-block',
-    marginLeft: '60px'
+    paddingRight: '28px',
   };
 
   return (
@@ -25,7 +25,7 @@ const Donut = ({percent, iterations, numberOfCompleted}) => {
           }}
         />
       </div>
-      <p className='absolute top-20 right-[85px] text-gray-200 font-bold text-3xl'>{numberOfCompleted}/{iterations.length}</p>
+      <p className='absolute top-20 right-[105px] text-gray-200 font-bold text-3xl'>{numberOfCompleted}/{iterations.length}</p>
     </div>
   );
 };

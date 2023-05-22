@@ -14,6 +14,7 @@ module.exports = {
         'main-blue': '#34B3F1',
         'main-dark': '#111828',
         'main-light-dark': '#202938',
+        'container-bg': '#081426',
       },
       gridTemplateColumns:
         {

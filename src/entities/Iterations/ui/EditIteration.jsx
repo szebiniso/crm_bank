@@ -34,7 +34,7 @@ const EditIteration = ({iteration, closeModal}) => {
       action="src/entities/Users/ui#"
     >
       <div className="w-full flex flex-col gap-7 z-10">
-        <Input onChange={formik.handleChange} type='text' placeholder='' name='name' label='Название' >
+        <Input onChange={formik.handleChange} type='text' placeholder='' value={formik.values.name} name='name' label='Название' >
           <Bars2Icon className="h-5 text-gray-400 px-2" />
         </Input>
 

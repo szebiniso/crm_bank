@@ -19,10 +19,10 @@ const OrganizationCard = ({organization}) => {
             <div className="flex items-center pl-4 gap-4">
               <img className="object-cover mx-auto w-16 h-16 rounded-full" src={setFile(photo)} alt="Neil image"/>
               <div className="">
-                <p className="text-ms font-bold text-gray-300 truncate dark:text-white">
+                <p className="text-lg leading-6 font-bold text-gray-300 truncate">
                   {name}
                 </p>
-                <p className="text-md text-gray-200 truncate dark:text-gray-400">
+                <p className="text-md leading-5 text-gray-400 truncate">
                   {field}
                 </p>
               </div>

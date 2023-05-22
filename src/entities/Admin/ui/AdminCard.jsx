@@ -4,6 +4,7 @@ import DeleteModal from "../../../widgets/Modals/ui/DeleteModal";
 import FormModal from "../../../widgets/Modals/ui/FormModal";
 import EditAdmin from "./EditAdmin";
 import {setFile} from "../../../shared/utils/setFile";
+import {truncateString} from "../../../shared/utils/truncateString";
 
 const AdminCard = ({admin}) => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -45,7 +46,7 @@ const AdminCard = ({admin}) => {
               <div className="flex min-h-full flex-col items-center justify-center">
                 <p className="text-xl font-bold">{first_name}</p>
                 <p className="text-xl font-bold">{last_name}</p>
-                <p className="text-lg ">{email}</p>
+                <p className="text-lg ">{truncateString(email, 20)}</p>
                 <p className="text-base">
                   {phone_number}
                 </p>

@@ -29,7 +29,7 @@ const MainRouting = () => {
 
         {/*Project Manager*/}
         <Route path="/projects" element={<Projects />} />
-        <Route path="/projects/:id" element={<Iterations />} />
+        {/*<Route path="/projects/:id" element={<Iterations />} />*/}
       </Routes>
     </div>
   );

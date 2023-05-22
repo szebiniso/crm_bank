@@ -3,46 +3,53 @@ import Button from "../../../shared/ui/Button";
 import { useFormik } from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import Input from "../../../shared/ui/Input";
-import {UserIcon, PencilIcon, ArrowTrendingUpIcon, CalendarDaysIcon, DocumentTextIcon} from "@heroicons/react/24/outline";
+import {UserIcon, PencilIcon, ArrowTrendingUpIcon, CalendarDaysIcon, BanknotesIcon} from "@heroicons/react/24/outline";
 import {getManagers} from "../../Users/api/UsersSliceFunctions";
-import {createProject} from "../api/ProjectsSliceFunctions";
+import { createProject} from "../api/ProjectsSliceFunctions";
 import InputTextArea from "../../../shared/ui/InputTextArea";
-import FileUploadForm from "../../../shared/ui/addingInputForFile";
-import {XMarkIcon} from "@heroicons/react/20/solid";
+import {InboxArrowDownIcon, XMarkIcon} from "@heroicons/react/20/solid";
+import DragAndDropFile from "../../../shared/ui/DragAndDropFile";
+import FormModal from "../../../widgets/Modals/ui/FormModal";
+import {useDropzone} from "react-dropzone";
 
 export default function ProjectCreateForm({closeModal}) {
 
+  const [fileModal, setFileModal] = useState(false);
+
   const dispatch = useDispatch()
 
-  const [selectedFiles, setSelectedFiles] = useState([]);
+  const fData = new FormData();
 
-  // kkkkkkkkkkkkkkkkkk
+  // ............DragAndDropFiles...................................................................
+
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+
+  const onDrop = async (acceptedFiles) => {
+    setUploadedFiles(acceptedFiles);
+  };
+
+
+  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
+
   const handleFileChange = (event, index) => {
     const file = event.target.files[0];
-    const updatedFiles = [...selectedFiles];
+    const updatedFiles = [...uploadedFiles];
     updatedFiles[index] = file;
-    setSelectedFiles(updatedFiles);
+    setUploadedFiles(updatedFiles);
   };
 
-  const handleAddFileInput = () => {
-    setSelectedFiles([...selectedFiles, null]);
-  };
-
-  const handleRemoveFileInput = (index) => {
-    const updatedFiles = [...selectedFiles];
-    updatedFiles.splice(index, 1);
-    setSelectedFiles(updatedFiles);
-  };
-
-  // kkkkkkkkkkkkkkkkkkk
-
-  // const handleFileChange = (event) => {
-  //   const newFile = event.target.files[0]
-  //   setSelectedFiles((prevFiles) => [...prevFiles, newFile]);
-  //   // setSelectedFiles(files);
+  // const handleAddFileInput = () => {
+  //   setUploadedFiles([...uploadedFiles, null]);
+  //   // setFileModal(true)
   // };
 
-  console.log("files_list: ",selectedFiles)
+  const handleRemoveFileInput = (index) => {
+    const updatedFiles = [...uploadedFiles];
+    updatedFiles.splice(index, 1);
+    setUploadedFiles(updatedFiles);
+  };
+
+  // .........................................................................................................
 
   const {managers} = useSelector(state => state.users)
   const {loading} = useSelector(state => state.projects)
@@ -51,8 +58,6 @@ export default function ProjectCreateForm({closeModal}) {
     dispatch(getManagers({limit: 20, offset: 0}))
   }, []);
 
-
-  console.log('admins', managers)
   const formik = useFormik({
     initialValues: {
       manager: null,
@@ -61,14 +66,11 @@ export default function ProjectCreateForm({closeModal}) {
       status: "",
       'start_date': null,
       'end_date': null,
-      'files': selectedFiles,
       budget: "",
     },
     enableReinitialize: true,
     onSubmit: (values) => {
-
-      const fData = new FormData();
-      selectedFiles.forEach((file, index) => {
+      uploadedFiles.forEach((file, index) => {
         fData.append(`uploaded_files[${index}]`, file);
       });
       fData.append("name", values.name);
@@ -91,31 +93,6 @@ export default function ProjectCreateForm({closeModal}) {
         className="flex flex-col justify-center items-center "
         action="src/entities/Users/ui#"
       >
-
-        <div className='w-full'>
-          {selectedFiles.map((file, index) => (
-            <div key={index}>
-              <div className="w-full flex flex-col gap-7 z-10 mb-6">
-                <div className='border-y border-gray-500'>
-                  <div className="flex items-center bg-transparent w-full border-x-2 border-[#3e9db4] m-auto h-full">
-                    <DocumentTextIcon className="h-5 text-gray-400 px-2" />
-                    <div className='flex flex-col w-full border-x border-gray-500'>
-                      <label
-                        htmlFor="first-name"
-                        className="text-sm pl-3 py-1 border-b border-gray-500 font-bold text-[#b99a47] md:pl-1 lg:pl-1 xl:pl-2"
-                      >Файл</label>
-                    <div className='flex w-full items-center'>
-                      <input className='w-full h-full overflow-auto bg-transparent focus:ring-blue-500 border-none outline-none text-gray-300 md:text-1 lg:text-1 xl:text-1 ' type="file" onChange={(event) => handleFileChange(event, index)}/>
-                      <XMarkIcon onClick={() => handleRemoveFileInput(index)} className="h-6 w-6 text-gray-500" />
-                    </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-          <button type='button' onClick={handleAddFileInput} className="mb-6 p-2 border border-1 border-gray-500 text-gray-200">Добавить файл</button>
-        </div>
 
         <div className="w-full flex flex-col gap-7 z-10">
           <div className='border-y border-gray-500'>
@@ -149,7 +126,7 @@ export default function ProjectCreateForm({closeModal}) {
           </Input>
 
           <Input onChange={formik.handleChange} type='text' placeholder='Введите бюджет проекта' name='budget' label='Бюджет' >
-            <PencilIcon className="h-5 text-gray-400 px-2" />
+            <BanknotesIcon className="h-5 text-gray-400 px-2" />
           </Input>
 
           <Input onChange={formik.handleChange} type='date' placeholder='' name='start_date' label='Дата начало' >
@@ -185,12 +162,52 @@ export default function ProjectCreateForm({closeModal}) {
               </div>
             </div>
           </div>
+
+
+          {/*.........DropAndDragFiles.........*/}
+
+          <div className='my-2'>
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              {isDragActive ? (
+                <p>Drop the files here...</p>
+              ) : (
+                <div className='flex flex-col cursor-pointer mb-8 gap-2 items-center text-gray-400'>
+                  <InboxArrowDownIcon className="h-12 w-12 text-gray-500" />
+                  <p>Кликните или перетащите файл сюда</p>
+                </div>
+
+              )}
+            </div>
+
+            {uploadedFiles.map((file, index) => (
+              <div className='my-4' key={index}>
+                <div className='flex w-full items-center text-gray-400'>
+                  <input className='w-full h-full overflow-auto bg-transparent focus:ring-blue-500 border-none outline-none text-gray-300 md:text-1 lg:text-1 xl:text-1 ' type="file" onChange={(event) => handleFileChange(event, index)}/>
+                  <XMarkIcon onClick={() => handleRemoveFileInput(index)} className="h-6 w-6 text-gray-500 cursor-pointer" />
+                </div>
+              </div>
+            ))}
+          </div>
+
+
+          {/*.......................................*/}
+
+
           {
             loading ? <Button disabled type="button" loading='true'/> : <Button type="submit" text='Создать'/>
           }
 
         </div>
       </form>
+      {
+        fileModal && <FormModal
+          showModal={fileModal}
+          setShowModal={() => setFileModal(false)}
+        >
+          <DragAndDropFile formData={fData} closeModal={() => setFileModal(false)}/>
+        </FormModal>
+      }
     </>
   );
 }
